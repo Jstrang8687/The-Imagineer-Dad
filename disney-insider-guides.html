@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disney Insider Guides | The Imagineer Dad</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  a { color: inherit; text-decoration: none; }
+
+  :root {
+    --navy: #0c1138;
+    --navy-light: #16205a;
+    --gold: #e8a020;
+    --gold-light: #ffd84d;
+    --purple: #9900ff;
+    --purple-light: #bb44ff;
+    --purple-dark: #6600bb;
+    --cream: #f8f4ee;
+    --text: #2a2a3a;
+    --text-light: #5a5a72;
+    --white: #ffffff;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.7;
+  }
+
+  /* ====== NAV ====== */
+  .site-header {
+    background: var(--navy);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  }
+  .site-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 20px;
+    color: var(--gold-light);
+    letter-spacing: 1px;
+  }
+  .site-logo span { color: white; font-weight: 400; font-style: italic; font-size: 14px; letter-spacing: 3px; display: block; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.75); font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--purple-light); }
+  .nav-cta {
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    color: var(--navy) !important;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: 700 !important;
+  }
+
+  /* ====== HERO ====== */
+  .hero {
+    background: linear-gradient(135deg, #0a0e28 0%, #1a0c4a 50%, #0c1138 100%);
+    color: white;
+    padding: 70px 40px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(153,0,255,0.12) 0%, transparent 70%);
+  }
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid rgba(153,0,255,0.5);
+    color: var(--purple-light);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 5vw, 52px);
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .hero h1 span {
+    background: linear-gradient(90deg, #ffd84d, #fff5a0, #ffaa30);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.72);
+    max-width: 580px;
+    margin: 0 auto;
+    font-weight: 300;
+    position: relative;
+  }
+
+  /* ====== GUIDES GRID ====== */
+  .guides-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 64px 24px;
+  }
+
+  .section-intro {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .section-intro .label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 10px;
+  }
+  .section-intro h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    font-weight: 900;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+  .section-intro p {
+    font-size: 15px;
+    color: var(--text-light);
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  /* Card grid */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+  }
+
+  .guide-card {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e8e4f0;
+  }
+  .guide-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(153,0,255,0.15);
+  }
+
+  /* Card image area */
+  .card-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .guide-card:hover .card-image img {
+    transform: scale(1.05);
+  }
+  .card-image .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 30%, rgba(10,10,40,0.75) 100%);
+  }
+  .card-image .card-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: var(--purple);
+    color: white;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+  .card-image .card-badge.gold {
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    color: var(--navy);
+  }
+  .card-image .card-badge.coming {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+
+  /* Card body */
+  .card-body {
+    padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: white;
+  }
+  .card-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--navy);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .card-body p {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.65;
+    flex: 1;
+    margin-bottom: 20px;
+  }
+
+  /* Topics pills */
+  .topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .topic-pill {
+    background: var(--cream);
+    border: 1px solid #e0dbd0;
+    color: var(--text);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  /* Card CTA */
+  .card-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--purple-dark), var(--purple));
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 30px;
+    transition: opacity 0.2s;
+  }
+  .card-link:hover { opacity: 0.88; }
+  .card-link.disabled {
+    background: #e0dbd0;
+    color: #999;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  .card-link .arrow { font-size: 14px; }
+  .guide-count {
+    font-size: 11px;
+    color: var(--text-light);
+    font-weight: 600;
+  }
+
+  /* ====== JASON CALLOUT ====== */
+  .jason-callout {
+    background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple) 100%);
+    color: white;
+    border-radius: 16px;
+    padding: 40px 48px;
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    margin: 0 24px 64px;
+    max-width: 1100px;
+    margin: 0 auto 64px;
+  }
+  @media(max-width: 680px) {
+    .jason-callout { flex-direction: column; text-align: center; padding: 32px 24px; }
+  }
+  .callout-icon { font-size: 52px; flex-shrink: 0; }
+  .callout-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 900;
+    margin-bottom: 8px;
+  }
+  .callout-text p { font-size: 14px; color: rgba(255,255,255,0.82); line-height: 1.65; margin-bottom: 18px; }
+  .callout-btn {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    border-radius: 30px;
+  }
+
+  /* ====== FOOTER ====== */
+  .site-footer {
+    background: #08091c;
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 28px 24px;
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+  .site-footer a { color: var(--gold-light); opacity: 0.6; }
+
+  @media(max-width: 600px) {
+    .site-header { padding: 0 20px; }
+    .nav-links { gap: 16px; }
+    .hero { padding: 50px 20px 40px; }
+    .guides-section { padding: 40px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="site-header">
+  <a href="https://www.theimagineerdad.com" class="site-logo">
+    <span>The</span>IMAGINEER DAD
+  </a>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="https://www.theimagineerdad.com">Home</a></li>
+      <li><a href="https://form.jotform.com/Jason_Strang/request-a-disney-quote" target="_blank" class="nav-cta">Book with Jason</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Expert Guides</div>
+  <h1>Disney Insider Guides<br><span>from The Imagineer Dad</span></h1>
+  <p>Everything you need to know before you go — from what's included in your cruise fare to rope-drop strategies at the parks. Written from real experience.</p>
+</section>
+
+<!-- CARDS -->
+<section class="guides-section">
+  <div class="section-intro">
+    <div class="label">Pick Your Destination</div>
+    <h2>Choose a Guide to Get Started</h2>
+    <p>Each guide is packed with insider tips, what's included breakdowns, and advice from a dad who's done it all.</p>
+  </div>
+
+  <div class="cards-grid">
+
+    <!-- CRUISE -->
+    <a href="https://cruise.theimagineerdad.com" target="_blank" class="guide-card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?w=600&q=80" alt="Disney Cruise Line"/>
+        <div class="overlay"></div>
+        <div class="card-badge gold">Available Now</div>
+      </div>
+      <div class="card-body">
+        <h3>Disney Cruise Line</h3>
+        <p>Everything included in your fare, dining tips, kids clubs, Castaway Cay, entertainment and insider advice so you get the most out of every sailing.</p>
+        <div class="topics">
+          <span class="topic-pill">What's Included</span>
+          <span class="topic-pill">Dining</span>
+          <span class="topic-pill">Kids Clubs</span>
+          <span class="topic-pill">Castaway Cay</span>
+          <span class="topic-pill">Pro Tips</span>
+        </div>
+        <div class="card-cta">
+          <span class="card-link">Read Guide <span class="arrow">→</span></span>
+          <span class="guide-count">5 sections</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- WDW -->
+    <div class="guide-card" style="opacity:0.75;">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1597466599360-3b9775841aec?w=600&q=80" alt="Walt Disney World"/>
+        <div class="overlay"></div>
+        <div class="card-badge coming">Coming Soon</div>
+      </div>
+      <div class="card-body">
+        <h3>Walt Disney World</h3>
+        <p>Park-by-park breakdowns, Lightning Lane strategy, best dining reservations, when to go, and how to plan a trip that doesn't leave you exhausted.</p>
+        <div class="topics">
+          <span class="topic-pill">Park Strategy</span>
+          <span class="topic-pill">Lightning Lane</span>
+          <span class="topic-pill">Dining</span>
+          <span class="topic-pill">Best Times to Go</span>
+        </div>
+        <div class="card-cta">
+          <span class="card-link disabled">Coming Soon</span>
+          <span class="guide-count">Guide in progress</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DISNEYLAND -->
+    <div class="guide-card" style="opacity:0.75;">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1609743522471-83c84ce23e32?w=600&q=80" alt="Disneyland"/>
+        <div class="overlay"></div>
+        <div class="card-badge coming">Coming Soon</div>
+      </div>
+      <div class="card-body">
+        <h3>Disneyland</h3>
+        <p>West Coast magic — what's different from Walt Disney World, the best rides, how to do both parks in one trip, and tips specific to the Disneyland Resort.</p>
+        <div class="topics">
+          <span class="topic-pill">Park Tips</span>
+          <span class="topic-pill">vs. WDW</span>
+          <span class="topic-pill">California Adventure</span>
+          <span class="topic-pill">Hotels</span>
+        </div>
+        <div class="card-cta">
+          <span class="card-link disabled">Coming Soon</span>
+          <span class="guide-count">Guide in progress</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- UNIVERSAL -->
+    <div class="guide-card" style="opacity:0.75;">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80" alt="Universal"/>
+        <div class="overlay"></div>
+        <div class="card-badge coming">Coming Soon</div>
+      </div>
+      <div class="card-body">
+        <h3>Universal Vacations</h3>
+        <p>Express Pass strategy, Wizarding World tips, Epic Universe preview, and how to combine Universal with a Walt Disney World trip for the ultimate Orlando vacation.</p>
+        <div class="topics">
+          <span class="topic-pill">Express Pass</span>
+          <span class="topic-pill">Harry Potter</span>
+          <span class="topic-pill">Epic Universe</span>
+          <span class="topic-pill">Orlando Combos</span>
+        </div>
+        <div class="card-cta">
+          <span class="card-link disabled">Coming Soon</span>
+          <span class="guide-count">Guide in progress</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- JASON CALLOUT -->
+<div style="padding: 0 24px 64px; max-width:1148px; margin:0 auto;">
+  <div class="jason-callout">
+    <div class="callout-icon">✨</div>
+    <div class="callout-text">
+      <h3>Don't plan it alone — let me help.</h3>
+      <p>As a Disney travel advisor with Wish Upon a Castle, I handle every detail of your trip completely free to you — dining reservations, park strategies, hotel selection, and more. My fee is paid by Disney, not you.</p>
+      <a href="https://form.jotform.com/Jason_Strang/request-a-disney-quote" target="_blank" class="callout-btn">Request a Free Quote</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p>&copy; 2025 The Imagineer Dad &nbsp;|&nbsp; Jason Strang, Travel Advisor &nbsp;|&nbsp; <a href="https://www.wishuponacastle.com">Wish Upon a Castle</a> &nbsp;|&nbsp; <a href="https://www.theimagineerdad.com">theimagineerdad.com</a></p>
+</footer>
+
+</body>
+</html>
