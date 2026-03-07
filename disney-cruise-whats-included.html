@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What's Included on a Disney Cruise | The Imagineer Dad</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  a { color: inherit; text-decoration: none; }
+
+  :root {
+    --navy: #0c1138;
+    --navy-light: #16205a;
+    --gold: #e8a020;
+    --gold-light: #ffd84d;
+    --purple: #9900ff;
+    --purple-light: #bb44ff;
+    --purple-dark: #6600bb;
+    --cream: #f8f4ee;
+    --text: #2a2a3a;
+    --text-light: #5a5a72;
+    --white: #ffffff;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.7;
+  }
+
+  /* ====== HEADER / NAV ====== */
+  .site-header {
+    background: var(--navy);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  }
+  .site-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 20px;
+    color: var(--gold-light);
+    letter-spacing: 1px;
+    text-decoration: none;
+  }
+  .site-logo span { color: white; font-weight: 400; font-style: italic; font-size: 14px; letter-spacing: 3px; display: block; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--purple-light); }
+  .nav-cta {
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    color: var(--navy) !important;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: 700 !important;
+  }
+
+  /* ====== HERO ====== */
+  .hero {
+    background: linear-gradient(135deg, #0a0e28 0%, #1a0c4a 50%, #0c1138 100%);
+    color: white;
+    padding: 80px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(153,0,255,0.12) 0%, transparent 70%);
+  }
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid rgba(153,0,255,0.5);
+    color: var(--purple-light);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .hero h1 span {
+    background: linear-gradient(90deg, #ffd84d, #fff5a0, #ffaa30);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p {
+    font-size: 17px;
+    color: rgba(255,255,255,0.78);
+    max-width: 620px;
+    margin: 0 auto 32px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .hero-cta {
+    display: inline-block;
+    background: linear-gradient(90deg, #ffd84d, #ffaa30);
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 14px 36px;
+    border-radius: 40px;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(255,180,30,0.35);
+  }
+
+  /* ====== INTRO BANNER ====== */
+  .intro-banner {
+    background: var(--cream);
+    border-left: 4px solid var(--purple);
+    padding: 28px 40px;
+    max-width: 900px;
+    margin: 60px auto;
+    border-radius: 0 8px 8px 0;
+  }
+  .intro-banner p { font-size: 16px; color: var(--text); line-height: 1.8; }
+  .intro-banner strong { color: var(--navy); }
+
+  /* ====== SECTION LAYOUT ====== */
+  .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+  .section { padding: 60px 0; border-bottom: 1px solid #eee; }
+  .section:last-of-type { border-bottom: none; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .section-icon {
+    width: 52px; height: 52px;
+    background: linear-gradient(135deg, var(--purple-dark), var(--purple));
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+  .section-title-wrap h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+  .section-title-wrap .subtitle {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 4px;
+  }
+
+  /* ====== INCLUDED / NOT INCLUDED GRID ====== */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media(max-width:700px){ .two-col { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--white);
+    border: 1px solid #e8e4f0;
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  }
+  .card.included { border-top: 3px solid #28a060; }
+  .card.not-included { border-top: 3px solid #c04040; }
+  .card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .card.included h3 { color: #1a7a46; }
+  .card.not-included h3 { color: #a03030; }
+
+  .check-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .check-list li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.5; }
+  .check-list li::before { content: '✓'; color: #28a060; font-weight: 800; margin-top: 1px; flex-shrink: 0; }
+  .x-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .x-list li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.5; }
+  .x-list li::before { content: '+'; color: #c04040; font-weight: 800; margin-top: 1px; flex-shrink: 0; }
+
+  /* ====== FEATURE GRID ====== */
+  .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .feature-card {
+    background: var(--cream);
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid #e0dbd0;
+  }
+  .feature-card .f-icon { font-size: 28px; margin-bottom: 10px; }
+  .feature-card h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .feature-card p { font-size: 14px; color: var(--text-light); line-height: 1.6; }
+
+  /* ====== HIGHLIGHT BOX ====== */
+  .highlight-box {
+    background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple) 100%);
+    color: white;
+    border-radius: 16px;
+    padding: 36px 40px;
+    margin: 40px 0;
+  }
+  .highlight-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 12px;
+  }
+  .highlight-box p { font-size: 15px; color: rgba(255,255,255,0.82); line-height: 1.7; }
+  .highlight-box ul { list-style: none; margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
+  @media(max-width:600px){ .highlight-box ul { grid-template-columns: 1fr; } }
+  .highlight-box ul li { font-size: 14px; color: rgba(255,255,255,0.8); display: flex; gap: 8px; }
+  .highlight-box ul li::before { content: '⭐'; font-size: 12px; margin-top: 2px; }
+
+  /* ====== KIDS CLUBS ====== */
+  .clubs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+  .club-card {
+    border-radius: 12px;
+    padding: 24px;
+    color: white;
+    text-align: center;
+  }
+  .club-card.oceaneer { background: linear-gradient(135deg, #1a6a9a, #0d4a7a); }
+  .club-card.edge     { background: linear-gradient(135deg, var(--purple), var(--purple-dark)); }
+  .club-card.vibe     { background: linear-gradient(135deg, var(--purple-dark), #440088); }
+  .club-card.nursery  { background: linear-gradient(135deg, #2a6a3a, #1a4a28); }
+  .club-card .c-icon  { font-size: 32px; margin-bottom: 10px; }
+  .club-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .club-card .ages { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; opacity: 0.7; margin-bottom: 10px; }
+  .club-card p { font-size: 13px; opacity: 0.85; line-height: 1.5; }
+  .club-card .extra-note { font-size: 11px; font-weight: 700; background: rgba(255,255,255,0.15); border-radius: 20px; padding: 3px 10px; margin-top: 10px; display: inline-block; }
+
+  /* ====== CTA SECTION ====== */
+  .cta-section {
+    background: linear-gradient(135deg, #0a0e28 0%, #1a0c4a 100%);
+    color: white;
+    text-align: center;
+    padding: 80px 40px;
+  }
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 900;
+    margin-bottom: 16px;
+  }
+  .cta-section h2 span {
+    background: linear-gradient(90deg, var(--purple-light), #dd88ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .cta-section p { color: rgba(255,255,255,0.75); font-size: 16px; max-width: 560px; margin: 0 auto 32px; font-weight: 300; }
+  .cta-btn {
+    display: inline-block;
+    background: linear-gradient(90deg, #ffd84d, #ffaa30);
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 16px 40px;
+    border-radius: 40px;
+    text-decoration: none;
+    box-shadow: 0 6px 24px rgba(255,180,30,0.4);
+  }
+  .cta-contact {
+    margin-top: 24px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+  }
+  .cta-contact a { color: var(--gold-light); text-decoration: none; }
+
+  /* ====== FOOTER ====== */
+  .site-footer {
+    background: #08091c;
+    color: rgba(255,255,255,0.45);
+    text-align: center;
+    padding: 30px 24px;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  .site-footer a { color: var(--gold-light); opacity: 0.6; text-decoration: none; }
+
+  /* ====== PRO TIPS ====== */
+  .tips-list { display: flex; flex-direction: column; gap: 14px; }
+  .tip {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 16px 20px;
+    border-left: 3px solid var(--purple);
+  }
+  .tip-num {
+    background: linear-gradient(135deg, var(--purple-dark), var(--purple));
+    color: white;
+    font-weight: 900;
+    font-size: 13px;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .tip p { font-size: 14px; line-height: 1.6; color: var(--text); }
+  .tip strong { color: var(--navy); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="site-header">
+  <a href="https://www.theimagineerdad.com" class="site-logo">
+    <span>The</span>IMAGINEER DAD
+  </a>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="https://www.theimagineerdad.com">Home</a></li>
+      <li><a href="mailto:jason@wishuponacastle.com" class="nav-cta">Book with Jason</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Disney Cruise Line Guide</div>
+  <h1>What's Included on a<br><span>Disney Cruise?</span></h1>
+  <p>From rotational dining and Broadway-style shows to world-class kids clubs and fireworks at sea — here's everything your fare covers (and what costs extra).</p>
+  <a href="mailto:jason@wishuponacastle.com?subject=Disney Cruise Quote Request" class="hero-cta">Get a Free Quote from Jason</a>
+</section>
+
+<main class="container">
+
+  <!-- INTRO -->
+  <div class="intro-banner">
+    <p>Disney Cruise Line is widely regarded as the best cruise line for families — and for good reason. <strong>Your fare covers far more than most cruise lines</strong>, including all main dining, Broadway-caliber shows, incredible kids clubs, pools and waterslides, character meet-and-greets, and so much more. As your travel advisor, I'll help you understand exactly what you're getting — and how to make the most of every dollar.</p>
+  </div>
+
+  <!-- WHAT'S INCLUDED / NOT INCLUDED -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">📋</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">The Bottom Line</div>
+        <h2>Included vs. Extra Cost</h2>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="card included">
+        <h3>✓ Included in Your Fare</h3>
+        <ul class="check-list">
+          <li>Your stateroom accommodation</li>
+          <li>All main rotational dining restaurants</li>
+          <li>Quick-service meals & poolside dining</li>
+          <li>24-hour room service</li>
+          <li>Soft drinks, coffee & tea at dining venues</li>
+          <li>All-you-can-enjoy soft serve ice cream</li>
+          <li>Broadway-style stage shows</li>
+          <li>First-run & classic Disney movies (3D)</li>
+          <li>Deck parties & themed nights (Pirate Night!)</li>
+          <li>Fireworks at sea (most sailings)</li>
+          <li>Character meet-and-greets</li>
+          <li>Royal Gathering princess experience</li>
+          <li>Kids clubs (ages 3–17)</li>
+          <li>Pools, splash zones & waterslides</li>
+          <li>Adults-only Quiet Cove pool</li>
+          <li>Fitness center & running track</li>
+          <li>Castaway Cay / Lookout Cay beach access</li>
+          <li>Beach chairs & umbrellas at private islands</li>
+          <li>Trivia, games & daily activities</li>
+          <li>Midship Detective Agency interactive game</li>
+          <li>Disney Navigator app onboard messaging</li>
+        </ul>
+      </div>
+      <div class="card not-included">
+        <h3>+ Costs Extra</h3>
+        <ul class="x-list">
+          <li>Specialty adult dining (Palo, Remy, Enchante)</li>
+          <li>Alcoholic beverages</li>
+          <li>Smoothies & specialty coffees</li>
+          <li>Port Adventures (shore excursions)</li>
+          <li>Internet / Wi-Fi packages</li>
+          <li>Spa & salon services</li>
+          <li>Bibbidi Bobbidi Boutique makeovers</li>
+          <li>Nursery (under age 3) — hourly fee</li>
+          <li>Private cabanas at Castaway Cay</li>
+          <li>Bike & snorkel rentals on private islands</li>
+          <li>Onboard photography packages</li>
+          <li>Arcade games</li>
+          <li>Laundry services</li>
+          <li>Gratuities (auto-added, adjustable onboard)</li>
+          <li>Transportation to the cruise port</li>
+          <li>Some premium room service items</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- DINING -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">🍽️</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Food & Drinks</div>
+        <h2>World-Class Dining — Included</h2>
+      </div>
+    </div>
+    <p style="margin-bottom:24px; color:var(--text-light); font-size:15px;">Food is one of the best things about a Disney cruise — and the majority of it is covered in your fare. You'll rotate through three uniquely themed restaurants each evening, so you never have the same dinner twice.</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="f-icon">🔄</div>
+        <h3>Rotational Dining</h3>
+        <p>Three themed main dining restaurants per sailing — your dining team rotates with you each night so they always know your preferences. Dinner, breakfast and lunch all included.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🍔</div>
+        <h3>Quick-Service & Poolside</h3>
+        <p>Casual counters, poolside grills and buffet-style options are available throughout the day. The buffet opens as soon as you board — enjoy your first meal before you even sail!</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🛎️</div>
+        <h3>24-Hour Room Service</h3>
+        <p>Order breakfast, lunch, dinner or a late-night Mickey bar delivered to your stateroom — all included. Tip the delivery staff; the food itself is free.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🍦</div>
+        <h3>Soft Serve Ice Cream</h3>
+        <p>Self-service soft-serve ice cream is available on the pool deck all day, all cruise — a beloved Disney tradition. Eat as much as you want, totally free.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">☕</div>
+        <h3>Complimentary Drinks</h3>
+        <p>Soft drinks, coffee and tea are included at dining venues and drink stations throughout the day — a perk most cruise lines charge extra for.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🥂</div>
+        <h3>Specialty Dining (Extra Cost)</h3>
+        <p>Adult-exclusive restaurants like Palo (Italian), Remy (French) and Enchante offer a premium experience at an additional charge. Worth every penny for a special night out.</p>
+      </div>
+    </div>
+    <div class="highlight-box" style="margin-top:32px;">
+      <h3>🍽️ Pro Dining Tips from Jason</h3>
+      <ul>
+        <li>Can't decide between two entrées? Order both — it's included!</li>
+        <li>Book Palo or Remy as soon as your booking window opens — they fill fast</li>
+        <li>Arrive early to lunch on boarding day — the buffet is open and uncrowded</li>
+        <li>Check the Navigator app daily for dining times and special menus</li>
+        <li>Late-night snacks are available in the adult lounges at no charge</li>
+        <li>Island dining at Castaway Cay is included in your fare</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ENTERTAINMENT -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">🎭</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Shows & Events</div>
+        <h2>Entertainment That Rivals Broadway</h2>
+      </div>
+    </div>
+    <p style="margin-bottom:24px; color:var(--text-light); font-size:15px;">Disney doesn't cut corners on entertainment — these are full-scale, professional productions included in your fare.</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="f-icon">🎬</div>
+        <h3>Broadway-Style Stage Shows</h3>
+        <p>Full productions like <em>Beauty and the Beast</em>, <em>Frozen: A Musical Spectacular</em>, and Marvel shows. Productions vary by ship — check before booking if a specific show matters to you.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🎆</div>
+        <h3>Fireworks at Sea</h3>
+        <p>A Disney exclusive — fireworks launched from the ship at sea, typically on Caribbean and Bahamian sailings. No other major cruise line does this.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🏴‍☠️</div>
+        <h3>Pirate Night</h3>
+        <p>A full evening celebration with pirate-themed crafts, deck party, pirate feast dinner, and entertainment. Pack costumes — the whole ship participates!</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🎥</div>
+        <h3>Disney Movies</h3>
+        <p>First-run and classic Disney and Pixar films shown in 3D in the ship's theater throughout every day. Perfect for downtime or rainy sea days.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🎤</div>
+        <h3>Deck Parties & Live Music</h3>
+        <p>Character-led deck parties, live bands, trivia nights, dance parties, mixology demos and more. The daily schedule in the Navigator app keeps you from missing anything.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🔍</div>
+        <h3>Midship Detective Agency</h3>
+        <p>An interactive mystery game built into the ship itself — paintings come to life and clues lead you across decks. A unique Disney experience loved by all ages.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHARACTER EXPERIENCES -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">✨</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Characters & Experiences</div>
+        <h2>Meet Your Favorite Disney Characters</h2>
+      </div>
+    </div>
+    <p style="margin-bottom:28px; color:var(--text-light); font-size:15px;">Character meet-and-greets are included in your cruise fare — no upcharge, no FastPass required. Disney cruise ships offer more character interaction than most theme park visits.</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="f-icon">👑</div>
+        <h3>Royal Gathering</h3>
+        <p>A princess meet-and-greet experience — free for all guests. Reservations open 30 days before sailing regardless of Castaway Club status. <strong>Book it immediately when your window opens.</strong></p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🐭</div>
+        <h3>Mickey & Friends</h3>
+        <p>Mickey Mouse, Minnie, Donald, Goofy and more appear throughout the ship daily. The Navigator app lists exact times and locations so you never miss them.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🦸</div>
+        <h3>Marvel & Star Wars</h3>
+        <p>Select sailings feature Marvel or Star Wars characters and themed events. Marvel Day at Sea and Star Wars Day at Sea are special add-on cruise experiences on select itineraries.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- KIDS CLUBS -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">🎠</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Youth Activities</div>
+        <h2>World-Class Kids Clubs — All Included</h2>
+      </div>
+    </div>
+    <p style="margin-bottom:28px; color:var(--text-light); font-size:15px;">Disney's youth clubs are widely considered the best in the cruise industry — large, beautifully designed spaces with trained counselors and endless programming. All included in your fare (except the nursery).</p>
+    <div class="clubs-grid">
+      <div class="club-card oceaneer">
+        <div class="c-icon">🌊</div>
+        <h3>Oceaneer Club & Lab</h3>
+        <div class="ages">Ages 3–10</div>
+        <p>Immersive themed spaces with character meet-and-greets, scavenger hunts, cooking classes, science experiments, crafting and free play. Multiple themed rooms on most ships.</p>
+      </div>
+      <div class="club-card edge">
+        <div class="c-icon">🎮</div>
+        <h3>Edge</h3>
+        <div class="ages">Ages 11–14</div>
+        <p>A tween-exclusive hangout with video gaming, interactive tech, group activities, movies and chill spaces. Designed to feel cool, not babyish.</p>
+      </div>
+      <div class="club-card vibe">
+        <div class="c-icon">🎧</div>
+        <h3>Vibe</h3>
+        <div class="ages">Ages 14–17</div>
+        <p>Teen lounge with gaming, tech, music, events and dancing. Open until 2am on most nights. Your teens will want to be there — not with you!</p>
+      </div>
+      <div class="club-card nursery">
+        <div class="c-icon">🧸</div>
+        <h3>It's a Small World Nursery</h3>
+        <div class="ages">Under Age 3</div>
+        <p>Supervised care for your littlest ones with trained staff and age-appropriate activities.</p>
+        <div class="extra-note">⚠️ Extra hourly fee applies</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POOLS & RECREATION -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">🌊</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Recreation & Fitness</div>
+        <h2>Pools, Waterslides & More</h2>
+      </div>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="f-icon">🎢</div>
+        <h3>AquaDuck / AquaMouse / AquaDunk</h3>
+        <p>Each ship has its own signature waterslide experience. The AquaDuck on the Dream and Fantasy is a water coaster that circles the ship — a must-do. All included.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🏊</div>
+        <h3>Multiple Pools</h3>
+        <p>Every ship has family pools, kids splash zones, hot tubs, and the adults-only Quiet Cove Pool with whirlpools and loungers. All included in your fare.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🏋️</div>
+        <h3>Fitness Center</h3>
+        <p>Full gym with cardio equipment, free weights, and a running track on the outer deck. Included. Fitness classes and spa shower facilities also available at no charge.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASTAWAY CAY -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">🏝️</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Private Islands</div>
+        <h2>Castaway Cay & Lookout Cay</h2>
+      </div>
+    </div>
+    <p style="margin-bottom:24px; color:var(--text-light); font-size:15px;">Disney's private Bahamian islands are among the most popular parts of any cruise — and the core experience is included in your fare.</p>
+    <div class="two-col">
+      <div class="card included">
+        <h3>✓ Included at the Islands</h3>
+        <ul class="check-list">
+          <li>Beach access (family and adults-only areas)</li>
+          <li>Lounge chairs and beach umbrellas</li>
+          <li>Lunch and soft drinks on the island</li>
+          <li>Castaway Cay 5K race participation</li>
+          <li>Tram transportation around the island</li>
+          <li>Kids' splash areas and playgrounds</li>
+        </ul>
+      </div>
+      <div class="card not-included">
+        <h3>+ Extra at the Islands</h3>
+        <ul class="x-list">
+          <li>Private cabanas (reserve early — very popular)</li>
+          <li>Bike rentals</li>
+          <li>Snorkel gear rentals</li>
+          <li>Water sport equipment rentals</li>
+          <li>Specialty beverages & alcoholic drinks</li>
+          <li>Port Adventures / guided excursions</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRO TIPS -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">💡</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Jason's Insider Advice</div>
+        <h2>Pro Tips to Maximize Your Cruise</h2>
+      </div>
+    </div>
+    <div class="tips-list">
+      <div class="tip">
+        <div class="tip-num">1</div>
+        <p><strong>Use the Navigator app religiously.</strong> It lists every activity, dining time, character appearance and show for the day. Never miss a thing — and never stand in line when you don't have to.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">2</div>
+        <p><strong>Book the Royal Gathering the moment your window opens.</strong> It fills within hours. Your window opens 30 days before sailing for all guests, regardless of loyalty status.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">3</div>
+        <p><strong>Pool mornings are your best friend.</strong> Pools are quietest before 10am and on port days when most guests go ashore. On sea days, get there early or after 4pm.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">4</div>
+        <p><strong>Order both entrées at dinner.</strong> Can't decide? Your server will bring both — it's completely included. This is a Disney cruise, not a budget airline.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">5</div>
+        <p><strong>Pack pirate costumes.</strong> Pirate Night is one of the most memorable nights of any Disney cruise. The whole ship dresses up — don't be the family that missed the memo.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">6</div>
+        <p><strong>Let me handle the planning.</strong> As your travel advisor, I'll manage your dining reservations, activity bookings, and Castaway Club perks — at zero extra cost to you. That's what I'm here for.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Ready to Set Sail?<br><span>Let's Plan Your Disney Cruise.</span></h2>
+  <p>As a Disney travel advisor with Wish Upon a Castle, I handle every detail — dining reservations, port strategies, onboard activities — completely free to you. My fee is paid by Disney.</p>
+  <a href="mailto:jason@wishuponacastle.com?subject=Disney Cruise Quote&body=Hi Jason, I'd love help planning a Disney Cruise! Here are some details:%0A%0ANumber of guests:%0ATentative dates:%0ABudget range:%0ADestination ideas:%0A%0AThanks!" class="cta-btn">Request a Free Quote</a>
+  <div class="cta-contact">
+    Questions? Call or text <a href="tel:8436089481">843-608-9481</a> &nbsp;|&nbsp; <a href="mailto:jason@wishuponacastle.com">jason@wishuponacastle.com</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p>&copy; 2025 The Imagineer Dad &nbsp;|&nbsp; Jason Strang, Travel Advisor &nbsp;|&nbsp; <a href="https://www.wishuponacastle.com">Wish Upon a Castle</a> &nbsp;|&nbsp; <a href="https://www.theimagineerdad.com">theimagineerdad.com</a></p>
+  <p style="margin-top:8px; font-size:10px; opacity:0.5;">Disney Cruise Line® is a registered trademark of The Walt Disney Company. This site is independently operated by Jason Strang, an authorized Disney travel advisor.</p>
+</footer>
+
+</body>
+</html>
