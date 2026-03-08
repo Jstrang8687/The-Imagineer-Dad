@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Walt Disney World Guide | The Imagineer Dad</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  a { color: inherit; text-decoration: none; }
+
+  :root {
+    --navy: #0c1138;
+    --navy-light: #16205a;
+    --gold: #e8a020;
+    --gold-light: #ffd84d;
+    --purple: #9900ff;
+    --purple-light: #bb44ff;
+    --purple-dark: #6600bb;
+    --cream: #f8f4ee;
+    --text: #2a2a3a;
+    --text-light: #5a5a72;
+    --white: #ffffff;
+  }
+
+  body { font-family: 'Montserrat', sans-serif; color: var(--text); background: var(--white); line-height: 1.7; }
+
+  /* NAV */
+  .site-header {
+    background: var(--navy); padding: 0 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px; position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  }
+  .site-logo { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 20px; color: var(--gold-light); letter-spacing: 1px; }
+  .site-logo span { color: white; font-weight: 400; font-style: italic; font-size: 14px; letter-spacing: 3px; display: block; }
+  .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+  .nav-links a { color: rgba(255,255,255,0.75); font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--purple-light); }
+  .nav-cta { background: linear-gradient(90deg, var(--gold), var(--gold-light)); color: var(--navy) !important; padding: 8px 20px; border-radius: 30px; font-weight: 700 !important; }
+  @media(max-width:600px){ .site-header{padding:0 16px;} .nav-links li:nth-child(1){ display:none; } }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #0a0e28 0%, #1a0c4a 50%, #0c1138 100%);
+    color: white; padding: 80px 40px; text-align: center; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(153,0,255,0.12) 0%, transparent 70%);
+  }
+  .hero-badge { display: inline-block; border: 1px solid rgba(153,0,255,0.5); color: var(--purple-light); font-size: 11px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; padding: 6px 18px; border-radius: 30px; margin-bottom: 20px; position: relative; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 58px); font-weight: 900; line-height: 1.1; margin-bottom: 16px; position: relative; }
+  .hero h1 span { background: linear-gradient(90deg, #ffd84d, #fff5a0, #ffaa30); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero p { font-size: 17px; color: rgba(255,255,255,0.75); max-width: 620px; margin: 0 auto 32px; font-weight: 300; position: relative; }
+  .hero-cta { display: inline-block; background: linear-gradient(90deg, #ffd84d, #ffaa30); color: var(--navy); font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; padding: 14px 36px; border-radius: 40px; box-shadow: 0 4px 20px rgba(255,180,30,0.35); }
+
+  /* LAYOUT */
+  .container { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  .section { padding: 64px 0; border-bottom: 1px solid #eee; }
+  .section:last-of-type { border-bottom: none; }
+
+  .section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; }
+  .section-icon { width: 52px; height: 52px; background: linear-gradient(135deg, var(--purple-dark), var(--purple)); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+  .section-title-wrap .subtitle { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--purple); margin-bottom: 4px; }
+  .section-title-wrap h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; color: var(--navy); line-height: 1.2; }
+
+  /* INTRO BANNER */
+  .intro-banner { background: var(--cream); border-left: 4px solid var(--purple); padding: 28px 40px; max-width: 900px; margin: 56px auto; border-radius: 0 8px 8px 0; }
+  .intro-banner p { font-size: 16px; color: var(--text); line-height: 1.8; }
+
+  /* PARK CARDS */
+  .parks-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  @media(max-width:700px){ .parks-grid { grid-template-columns: 1fr; } }
+
+  .park-card { border-radius: 14px; overflow: hidden; border: 1px solid #e8e4f0; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .park-card-header { padding: 20px 24px; color: white; }
+  .park-card-header.mk { background: linear-gradient(135deg, #1a3a8a, #0d2060); }
+  .park-card-header.epcot { background: linear-gradient(135deg, #0a6a4a, #054a30); }
+  .park-card-header.hs { background: linear-gradient(135deg, #8a1a1a, #601010); }
+  .park-card-header.ak { background: linear-gradient(135deg, #2a6a1a, #1a4a0a); }
+  .park-card-header h3 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 900; margin-bottom: 4px; }
+  .park-card-header .park-tag { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; opacity: 0.75; }
+  .park-card-body { padding: 20px 24px; background: white; }
+  .park-card-body p { font-size: 13px; color: var(--text-light); line-height: 1.65; margin-bottom: 14px; }
+  .must-rides { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .must-rides li { font-size: 12px; font-weight: 600; color: var(--text); display: flex; gap: 8px; align-items: center; }
+  .must-rides li::before { content: '🎢'; font-size: 12px; }
+  .must-rides li.show::before { content: '🎭'; }
+  .must-rides li.char::before { content: '✨'; }
+
+  /* FEATURE GRID */
+  .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .feature-card { background: var(--cream); border-radius: 12px; padding: 24px; border: 1px solid #e0dbd0; }
+  .feature-card .f-icon { font-size: 28px; margin-bottom: 10px; }
+  .feature-card h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .feature-card p { font-size: 13px; color: var(--text-light); line-height: 1.65; }
+
+  /* LIGHTNING LANE TABLE */
+  .ll-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media(max-width:700px){ .ll-grid { grid-template-columns: 1fr; } }
+  .ll-card { border-radius: 12px; padding: 22px; color: white; }
+  .ll-card.llmp { background: linear-gradient(135deg, var(--purple-dark), var(--purple)); }
+  .ll-card.llsp { background: linear-gradient(135deg, #0e4a8a, #092d62); }
+  .ll-card.llpp { background: linear-gradient(135deg, #8a6000, #c49000); }
+  .ll-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .ll-card .ll-abbr { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; opacity: 0.7; margin-bottom: 10px; }
+  .ll-card p { font-size: 12px; opacity: 0.85; line-height: 1.6; }
+  .ll-card .ll-price { margin-top: 10px; font-size: 13px; font-weight: 700; }
+
+  /* WHEN TO GO */
+  .months-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  @media(max-width:700px){ .months-grid { grid-template-columns: repeat(2,1fr); } }
+  .month-card { border-radius: 10px; padding: 16px; text-align: center; border: 1px solid #e8e4f0; }
+  .month-card.best { border-color: #28a060; background: #f0fff8; }
+  .month-card.good { border-color: #4a8ae8; background: #f0f4ff; }
+  .month-card.busy { border-color: #e8a020; background: #fffaf0; }
+  .month-card.avoid { border-color: #c04040; background: #fff0f0; }
+  .month-card .m-name { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .month-card .m-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+  .month-card.best .m-label { color: #1a7a46; }
+  .month-card.good .m-label { color: #2a5ac8; }
+  .month-card.busy .m-label { color: #b87000; }
+  .month-card.avoid .m-label { color: #a03030; }
+  .month-card p { font-size: 11px; color: var(--text-light); margin-top: 6px; line-height: 1.4; }
+
+  /* TWO COL */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media(max-width:700px){ .two-col { grid-template-columns: 1fr; } }
+  .card { background: var(--white); border: 1px solid #e8e4f0; border-radius: 12px; padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+  .card.included { border-top: 3px solid #28a060; }
+  .card.extra { border-top: 3px solid var(--purple); }
+  .card h3 { font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+  .card.included h3 { color: #1a7a46; }
+  .card.extra h3 { color: var(--purple-dark); }
+  .check-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .check-list li { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 1.5; }
+  .check-list li::before { content: '✓'; color: #28a060; font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+  .plus-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .plus-list li { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 1.5; }
+  .plus-list li::before { content: '+'; color: var(--purple); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+
+  /* HIGHLIGHT BOX */
+  .highlight-box { background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple) 100%); color: white; border-radius: 16px; padding: 36px 40px; margin: 40px 0; }
+  .highlight-box h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; color: white; margin-bottom: 12px; }
+  .highlight-box p { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.7; }
+  .highlight-box ul { list-style: none; margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
+  @media(max-width:600px){ .highlight-box ul { grid-template-columns: 1fr; } }
+  .highlight-box ul li { font-size: 13px; color: rgba(255,255,255,0.85); display: flex; gap: 8px; }
+  .highlight-box ul li::before { content: '⭐'; font-size: 11px; margin-top: 3px; }
+
+  /* TIPS */
+  .tips-list { display: flex; flex-direction: column; gap: 14px; }
+  .tip { display: flex; gap: 16px; align-items: flex-start; background: var(--cream); border-radius: 10px; padding: 16px 20px; border-left: 3px solid var(--purple); }
+  .tip-num { background: linear-gradient(135deg, var(--purple-dark), var(--purple)); color: white; font-weight: 900; font-size: 13px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .tip p { font-size: 14px; line-height: 1.6; color: var(--text); }
+  .tip strong { color: var(--navy); }
+
+  /* RESORT TIERS */
+  .resort-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+  @media(max-width:700px){ .resort-grid { grid-template-columns: 1fr; } }
+  .resort-card { border-radius: 12px; padding: 24px; border: 1px solid #e8e4f0; }
+  .resort-card.value { border-top: 3px solid #4a8ae8; }
+  .resort-card.moderate { border-top: 3px solid var(--gold); }
+  .resort-card.deluxe { border-top: 3px solid var(--purple); }
+  .resort-card h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .resort-card .price { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+  .resort-card.value .price { color: #2a5ac8; }
+  .resort-card.moderate .price { color: var(--gold); }
+  .resort-card.deluxe .price { color: var(--purple); }
+  .resort-card p { font-size: 13px; color: var(--text-light); line-height: 1.6; margin-bottom: 10px; }
+  .resort-card .examples { font-size: 11px; font-weight: 600; color: var(--text); }
+
+  /* CTA */
+  .cta-section { background: linear-gradient(135deg, #0a0e28 0%, #1a0040 50%, #0c0030 100%); color: white; text-align: center; padding: 80px 40px; }
+  .cta-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 44px); font-weight: 900; margin-bottom: 16px; }
+  .cta-section h2 span { background: linear-gradient(90deg, var(--purple-light), #dd88ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .cta-section p { color: rgba(255,255,255,0.72); font-size: 15px; max-width: 560px; margin: 0 auto 32px; font-weight: 300; }
+  .cta-btn { display: inline-block; background: linear-gradient(90deg, #ffd84d, #ffaa30); color: var(--navy); font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; padding: 16px 40px; border-radius: 40px; box-shadow: 0 6px 24px rgba(255,180,30,0.4); }
+  .cta-contact { margin-top: 24px; font-size: 13px; color: rgba(255,255,255,0.5); }
+  .cta-contact a { color: var(--gold-light); }
+
+  /* FOOTER */
+  .site-footer { background: #08091c; color: rgba(255,255,255,0.4); text-align: center; padding: 28px 24px; font-size: 11px; letter-spacing: 1px; }
+  .site-footer a { color: var(--gold-light); opacity: 0.6; }
+
+  @media(max-width:480px){
+    .hero { padding: 50px 20px; }
+    .section { padding: 44px 0; }
+    .container { padding: 0 16px; }
+    .section-title-wrap h2 { font-size: 22px; }
+    .intro-banner { padding: 20px 24px; margin: 36px auto; }
+    .highlight-box { padding: 24px 20px; }
+    .cta-section { padding: 56px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="site-header">
+  <a href="/" class="site-logo">
+    <span>The</span>IMAGINEER DAD
+  </a>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="https://theimagineerdad.com">Home</a></li>
+      <li><a href="/guides">Insider Guides</a></li>
+      <li><a href="https://form.jotform.com/Jason_Strang/request-a-disney-quote" target="_blank" class="nav-cta">Book with Jason</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Walt Disney World Guide</div>
+  <h1>The Ultimate<br><span>Walt Disney World</span><br>Insider Guide</h1>
+  <p>Four incredible parks, world-class dining, Lightning Lane strategy, resort tips, and the insider knowledge you need to plan a stress-free, magical trip — from a dad who's done it.</p>
+  <a href="https://form.jotform.com/Jason_Strang/request-a-disney-quote" target="_blank" class="hero-cta">Get a Free Quote from Jason</a>
+</section>
+
+<main class="container">
+
+  <!-- INTRO -->
+  <div class="intro-banner">
+    <p>Walt Disney World Resort spans over <strong>27,000 acres</strong> with 4 theme parks, 2 water parks, Disney Springs, and more than 30 resort hotels. Planning a trip without help is overwhelming — that's exactly why I'm here. This guide covers everything you need to know, and <strong>my planning services are completely free to you</strong>.</p>
+  </div>
+
+  <!-- THE 4 PARKS -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">🏰</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Know Before You Go</div>
+        <h2>The 4 Theme Parks</h2>
+      </div>
+    </div>
+    <p style="margin-bottom:24px; font-size:15px; color:var(--text-light);">Each park has a completely different feel, pacing, and target audience. Knowing what each offers helps you prioritize your days and energy.</p>
+    <div class="parks-grid">
+
+      <div class="park-card">
+        <div class="park-card-header mk">
+          <div class="park-tag">The Classic</div>
+          <h3>Magic Kingdom</h3>
+        </div>
+        <div class="park-card-body">
+          <p>The most iconic park in the world — home to Cinderella Castle, the most rides of any WDW park, and the purest Disney magic. Best for families with young kids and first-time visitors. Plan a full day here minimum.</p>
+          <ul class="must-rides">
+            <li>Seven Dwarfs Mine Train</li>
+            <li>TRON Lightcycle / Run</li>
+            <li>Space Mountain</li>
+            <li>Haunted Mansion</li>
+            <li>Pirates of the Caribbean</li>
+            <li class="show">Festival of Fantasy Parade</li>
+            <li class="show">Happily Ever After Fireworks</li>
+            <li class="char">Cinderella's Royal Table (dining)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="park-card">
+        <div class="park-card-header epcot">
+          <div class="park-tag">Food, Culture & Thrills</div>
+          <h3>EPCOT</h3>
+        </div>
+        <div class="park-card-body">
+          <p>Half futuristic innovation, half global exploration — EPCOT's World Showcase visits 11 countries with unique food, drinks and entertainment. A grown-up favorite that also has some of the best rides on property.</p>
+          <ul class="must-rides">
+            <li>Guardians of the Galaxy: Cosmic Rewind</li>
+            <li>Frozen Ever After</li>
+            <li>Test Track</li>
+            <li>Soarin' Around the World</li>
+            <li>Remy's Ratatouille Adventure</li>
+            <li class="show">Luminous the Symphony of Us (nighttime)</li>
+            <li class="char">Kidcot Fun Stops</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="park-card">
+        <div class="park-card-header hs">
+          <div class="park-tag">Action & Star Wars</div>
+          <h3>Hollywood Studios</h3>
+        </div>
+        <div class="park-card-body">
+          <p>Home to the best thrill rides in all of WDW — Rise of the Resistance and Slinky Dog Dash alone make a day here essential. Toy Story Land and Galaxy's Edge are immersive worlds within the park.</p>
+          <ul class="must-rides">
+            <li>Star Wars: Rise of the Resistance</li>
+            <li>Slinky Dog Dash</li>
+            <li>Tower of Terror</li>
+            <li>Rock 'n' Roller Coaster starring The Muppets</li>
+            <li>Mickey & Minnie's Runaway Railway</li>
+            <li class="show">Indiana Jones Epic Stunt Spectacular</li>
+            <li class="show">Fantasmic! (nighttime)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="park-card">
+        <div class="park-card-header ak">
+          <div class="park-tag">Nature & Adventure</div>
+          <h3>Animal Kingdom</h3>
+        </div>
+        <div class="park-card-body">
+          <p>A lush, immersive nature and adventure park — the most beautiful of the four parks. Pandora is breathtaking at night. Plan an early start as animals are most active in the morning and the park often closes earlier.</p>
+          <ul class="must-rides">
+            <li>Avatar: Flight of Passage</li>
+            <li>Na'vi River Journey</li>
+            <li>Expedition Everest</li>
+            <li>Kilimanjaro Safaris</li>
+            <li class="show">Festival of The Lion King</li>
+            <li class="show">Finding Nemo: The Big Blue...and Beyond!</li>
+            <li class="char">Tusker House Restaurant</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="highlight-box" style="margin-top:32px;">
+      <h3>🎡 The Imagineer Dad's Park Order Recommendation</h3>
+      <p>For most families visiting WDW for the first time, here's the order I recommend and why:</p>
+      <ul>
+        <li>Day 1: Magic Kingdom — start with the most iconic, energy is high. It is the bigger of all the parks with the most to do.</li>
+        <li>Day 2: EPCOT — slower pace, great food, perfect midweek park</li>
+        <li>Day 3: Rest day: Pool day or Disney Springs — build it in, you'll need it</li>
+        <li>Day 4: Hollywood Studios — Get a Bounty in Star Wars after a relaxing day poolside</li>
+        <li>Day 5: Animal Kingdom — morning safari, Pandora at dusk, best lighting</li>
+        <li>Park Hopper? Use it to hit EPCOT evenings for Luminous after dinner, or fireworks again at Magic Kingdom</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- LIGHTNING LANE -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">⚡</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Skip the Lines</div>
+        <h2>Lightning Lane Explained</h2>
+      </div>
+    </div>
+    <p style="margin-bottom:28px; font-size:15px; color:var(--text-light);">Disney's line-skipping system replaced the old Genie+ and FastPass+ in 2024. There are now three tiers — here's what each one means and whether it's worth it for your family.</p>
+
+    <div class="ll-grid">
+      <div class="ll-card llmp">
+        <div class="ll-abbr">LLMP</div>
+        <h3>Lightning Lane Multi Pass</h3>
+        <p>Book one ride at a time with a return window. After riding, book your next one. Covers most popular rides. Purchase from the My Disney Experience app.</p>
+        <div class="ll-price">~$15–$30/person/day</div>
+      </div>
+      <div class="ll-card llsp">
+        <div class="ll-abbr">LLSP</div>
+        <h3>Lightning Lane Single Pass</h3>
+        <p>One-time Lightning Lane access for the top tier headliners — Rise of the Resistance, TRON, Guardians. Purchased separately, per ride.</p>
+        <div class="ll-price">~$10–$25/person/ride</div>
+      </div>
+      <div class="ll-card llpp">
+        <div class="ll-abbr">LLPP</div>
+        <h3>Lightning Lane Premier Pass</h3>
+        <p>Skip every Lightning Lane in one park with no return window needed. No scheduling, just walk up. Pricey but maximum flexibility for big spenders.</p>
+        <div class="ll-price">~$129–$449/person/day</div>
+      </div>
+    </div>
+
+    <div class="highlight-box" style="margin-top:28px;">
+      <h3>⚡ The Imagineer Dad's Lightning Lane Tips</h3>
+      <ul>
+        <li>If you are going to get LLMP, Buy LLMP as soon as the park opens — availability drops fast</li>
+        <li>Book your first ride immediately at 7am on the app (resort guests) or park open</li>
+        <li>Use LLSP for Rise of the Resistance and TRON — waits hit 90+ minutes</li>
+        <li>Rope drop (arrive before park opens) and hit headliners first without LL</li>
+        <li>LLPP is a must for Magic Kingdom</li>
+        <li>Midday break at the resort + return in the evening = shorter evening waits</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- WHEN TO GO -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">📅</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Planning Your Trip</div>
+        <h2>Crowd Calendar</h2>
+      </div>
+    </div>
+    <p style="margin-bottom:28px; font-size:15px; color:var(--text-light);">Crowds and pricing swing dramatically throughout the year. Choosing the right time can mean the difference between 20-minute waits and 90-minute waits on the same rides.
+      One thing is true Disney World is always Busy but you can help eleviate some of the waits with strategic timing
+    </p>
+    <div class="months-grid">
+      <div class="month-card best"><div class="m-name">January</div><div class="m-label">✓ Best</div><p>Post-holidays, low crowds, great deals</p></div>
+      <div class="month-card good"><div class="m-name">February</div><div class="m-label">Good</div><p>Low crowds except Presidents' Week</p></div>
+      <div class="month-card busy"><div class="m-name">March</div><div class="m-label">Busy</div><p>Spring break — avoid Easter week</p></div>
+      <div class="month-card good"><div class="m-name">April</div><div class="m-label">Good</div><p>Nice weather, moderate crowds post-Easter</p></div>
+      <div class="month-card busy"><div class="m-name">May</div><div class="m-label">Moderate</div><p>Crowds pick up, heat begins</p></div>
+      <div class="month-card avoid"><div class="m-name">June</div><div class="m-label">⚠ Avoid</div><p>Summer peak — hot, humid, packed</p></div>
+      <div class="month-card avoid"><div class="m-name">July</div><div class="m-label">⚠ Avoid</div><p>Busiest month of the year</p></div>
+      <div class="month-card best"><div class="m-name">August</div><div class="m-label">✓ Good</div><p>Crowds drop when school resumes</p></div>
+      <div class="month-card best"><div class="m-name">September</div><div class="m-label">✓ Best</div><p>Low crowds, cooler temps, great value</p></div>
+      <div class="month-card good"><div class="m-name">October</div><div class="m-label">Good</div><p>Halloween party season — fun but busier</p></div>
+      <div class="month-card busy"><div class="m-name">November</div><div class="m-label">Busy</div><p>Thanksgiving week is extremely busy</p></div>
+      <div class="month-card avoid"><div class="m-name">December</div><div class="m-label">⚠ Avoid</div><p>Christmas magic but maximum crowds</p></div>
+    </div>
+  </section>
+
+  <!-- WHERE TO STAY -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">🏨</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Accommodations</div>
+        <h2>Where to Stay at WDW</h2>
+      </div>
+    </div>
+    <p style="margin-bottom:28px; font-size:15px; color:var(--text-light);">Staying on-property unlocks perks that off-site guests don't get — including early park entry, free transportation, and free water park access on check-in day. Here's the breakdown by tier:</p>
+    <div class="resort-grid">
+      <div class="resort-card value">
+        <h3>Value Resorts</h3>
+        <div class="price">$150–$250/night</div>
+        <p>Budget-friendly with all the on-property perks. Great for families who plan to spend most of their time in the parks. Pools are fun and themed.</p>
+        <div class="examples">Pop Century, All-Star Sports, Art of Animation</div>
+      </div>
+      <div class="resort-card moderate">
+        <h3>Moderate Resorts</h3>
+        <div class="price">$250–$400/night</div>
+        <p>Better theming, larger pools, table-service dining, and a more resort-like feel. Great middle ground for families wanting more comfort without the luxury price.</p>
+        <div class="examples">Port Orleans, Caribbean Beach, Coronado Springs</div>
+      </div>
+      <div class="resort-card deluxe">
+        <h3>Deluxe Resorts</h3>
+        <div class="price">$400–$1,000+/night</div>
+        <p>Monorail or boat access to Magic Kingdom, multiple dining options, stunning theming, and signature amenities. Worth it for honeymooners and special occasions.</p>
+        <div class="examples">Grand Floridian, Polynesian, Wilderness Lodge, Beach Club</div>
+      </div>
+    </div>
+
+    <div class="highlight-box" style="margin-top:28px;">
+      <h3>🏨 On-Property Perks Worth Knowing</h3>
+      <ul>
+        <li>30-minute Early Theme Park Entry every day at all 4 parks</li>
+        <li>Free Disney transportation between parks, resorts and Disney Springs</li>
+        <li>Ability to book dining reservations 60 days out</li>
+        <li>Charges billed directly to your room via MagicBand</li>
+        <li>Get a FREE dining plan for kids (ages 3 to 9).<a href="https://www.disneytravelcenter.com/MIN-000000000108490/sites++walt-disney-world++special-offers++2026-kids-free-dining-plan++2026-kids-free-dining-plan/">Click for Details</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- DINING -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">🍽️</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Food & Restaurants</div>
+        <h2>Dining at Walt Disney World</h2>
+      </div>
+    </div>
+    <p style="margin-bottom:28px; font-size:15px; color:var(--text-light);">WDW has over 300 dining locations. The best table-service restaurants book up 60 days in advance — don't wait. Here's what to know:</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="f-icon">👑</div>
+        <h3>Signature Dining (Must Book Early)</h3>
+        <p>Be Our Guest, Cinderella's Royal Table, Topolino's Terrace, Victoria & Albert's. These require reservations 60 days out and sell out fast — book the morning your window opens.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🥞</div>
+        <h3>Character Dining</h3>
+        <p>Meet characters while you eat — no waiting in line. Chef Mickey's, Tusker House, Topolino's breakfast, and Garden Grill are family favorites. Book early, especially for character breakfasts.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🌍</div>
+        <h3>EPCOT World Showcase</h3>
+        <p>11 countries, 11 unique dining experiences. San Angel Inn in Mexico, Chefs de France, Teppan Edo in Japan, and Via Napoli pizza are standouts. Also perfect for festival food booths.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🎪</div>
+        <h3>EPCOT Festivals</h3>
+        <p>WDW runs food and culture festivals almost year-round at EPCOT. Festival of the Arts (Jan–Feb), Flower & Garden (Mar–May), Food & Wine (Aug–Nov), and Festival of the Holidays (Nov–Dec).</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🏰</div>
+        <h3>Disney Springs</h3>
+        <p>The shopping and dining district has celebrity chef restaurants — Morimoto Asia, STK, Wine Bar George — that don't require park tickets. Great for arrival night dinner or a day off from the parks.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🍦</div>
+        <h3>Must-Try Snacks</h3>
+        <p>Dole Whip at Magic Kingdom, LeFou's Brew in Fantasyland, Churros in Frontierland, School Bread in EPCOT's Norway pavilion, and a Butterbeer at Hogsmeade if you're hopping to Universal.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT'S INCLUDED / EXTRA -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">💰</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Budget Planning</div>
+        <h2>What's Included vs. Extra Cost</h2>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="card included">
+        <h3>✓ Included with Park Admission</h3>
+        <ul class="check-list">
+          <li>All standard ride queue access (standby)</li>
+          <li>All live shows and entertainment</li>
+          <li>Parades and nighttime spectaculars</li>
+          <li>Character meet-and-greets (scheduled)</li>
+          <li>Disney's free transportation (if staying on-site)</li>
+          <li>Early Theme Park Entry (resort guests)</li>
+          <li>MagicBand+ connectivity (MagicBand+ Additional Cost)</li>
+          <li>My Disney Experience app features</li>
+        </ul>
+      </div>
+      <div class="card extra">
+        <h3>+ Costs Extra</h3>
+        <ul class="plus-list">
+          <li>Lightning Lane Multi Pass (LLMP)</li>
+          <li>Lightning Lane Single Pass (LLSP)</li>
+          <li>Lightning Lane Premier Pass (LLPP)</li>
+          <li>All dining (table service and quick service)</li>
+          <li>Disney Dining Plan (optional add-on)</li>
+          <li>After-hours special events (Not-So-Scary, etc.)</li>
+          <li>Bibbidi Bobbidi Boutique makeovers</li>
+          <li>MagicBand+ (optional, some free with resort stay)</li>
+          <li>Parking ($30/day at park)</li>
+          <li>Souvenir photos (Memory Maker)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRO TIPS -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">💡</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">The Imagineer Dad's Park Advice</div>
+        <h2>Pro Tips for a Perfect Walt Disney World Trip</h2>
+      </div>
+    </div>
+    <div class="tips-list">
+      <div class="tip">
+        <div class="tip-num">1</div>
+        <p><strong>Rope drop every morning.</strong> Arrive at the park entrance 30–45 minutes before official open. The first hour has the shortest waits of the entire day — you can knock out 2–3 headliners before the crowds arrive.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">2</div>
+        <p><strong>Book dining 60 days out — to the minute.</strong> Popular restaurants like Be Our Guest and Cinderella's Royal Table release at 6am EST exactly 60 days before your trip. Set an alarm. They're gone within minutes.
+        <strong>Or Ask me to book it</strong></p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">3</div>
+        <p><strong>Take a midday break.</strong> Go back to your resort from 1–4pm — it's the hottest, most crowded time of day. Swim, nap, recharge. Return for the evening when crowds thin and shows begin. It changes the whole trip.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">4</div>
+        <p><strong>Download My Disney Experience before you arrive.</strong> This is your command center for everything — Lightning Lane purchases, dining reservations, wait times, park maps, and mobile ordering food to skip counter lines.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">5</div>
+        <p><strong>Stay on-property if your budget allows.</strong> Early park entry alone is worth it — you get 30 minutes before the general public every single day. Over a 7-day trip that's 3+ extra hours of low-wait riding.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">6</div>
+        <p><strong>Visit Animal Kingdom early, leave early.</strong> The park often closes earlier than the others and the animals are most active in the morning. Plan this park as your shortest day or pair it with an afternoon at EPCOT if you have a Park Hopper.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">7</div>
+        <p><strong>Don't skip the nighttime shows.</strong> Happily Ever After at Magic Kingdom, Fantasmic at Hollywood Studios, and Luminous at EPCOT are genuinely spectacular. Plan your last night around whichever park is hosting the show you most want to see.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">8</div>
+        <p><strong>Let me handle the details.</strong> Dining reservations, Lightning Lane strategy, resort selection, park order planning — I manage all of it at zero cost to you. That's what a Disney travel advisor is for.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Ready to Plan Your<br><span>Walt Disney World Trip?</span></h2>
+  <p>As your Disney travel advisor with Wish Upon a Castle, I'll handle every detail — dining, Lightning Lane strategy, resort selection, and more — completely free to you. My fee is paid by Disney.</p>
+  <a href="https://form.jotform.com/Jason_Strang/request-a-disney-quote" target="_blank" class="cta-btn">Request a Free Quote</a>
+  <div class="cta-contact">
+    Call or text <a href="tel:8436089481">843-608-9481</a> &nbsp;|&nbsp; <a href="mailto:jason@wishuponacastle.com">jason@wishuponacastle.com</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <p>&copy; 2025 The Imagineer Dad &nbsp;|&nbsp; Jason Strang, Travel Advisor &nbsp;|&nbsp; <a href="https://www.wishuponacastle.com">Wish Upon a Castle</a> &nbsp;|&nbsp; <a href="/">theimagineerdad.com</a></p>
+  <p style="margin-top:8px; font-size:10px; opacity:0.4;">Walt Disney World® is a registered trademark of The Walt Disney Company. This site is independently operated by Jason Strang, an authorized Disney travel advisor.</p>
+</footer>
+
+</body>
+</html>
