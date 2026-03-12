@@ -150,7 +150,7 @@
   .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 28px;
+    gap: 30px;
   }
 
   .guide-card {
@@ -371,7 +371,7 @@
     <p>Each guide is packed with insider tips, what's included breakdowns, and advice from a dad who's done it all.</p>
   </div>
 
-  <div class="cards-grid">
+  <div class="cards-grid"><!-- Begins Card grid Disney-->
 
     <!-- CRUISE -->
     <a href="/cruise" target="_blank" class="guide-card">
@@ -414,18 +414,18 @@
           <span class="topic-pill">Best Times to Go</span>
         </div>
         <div class="card-cta">
-          <span class="card-link ">Read Guide <span class="arrow">→</span></span>
+          <span class="card-link ">Read Guide<span class="arrow">→</span></span>
           <span class="guide-count">4 sections</span>
         </div>
       </div>
-    </div>
+    </a>
 
     <!-- DISNEYLAND -->
-    <div class="guide-card" style="opacity:0.75;">
+    <a href="/dl" target="_blank" class="guide-card">
       <div class="card-image">
         <img src="../images/DisneyLand.jpg" alt="Disneyland"/>
         <div class="overlay"></div>
-        <div class="card-badge coming">Coming Soon</div>
+        <div class="card-badge gold">Available Now</div>
       </div>
       <div class="card-body">
         <h3>Disneyland</h3>
@@ -437,21 +437,23 @@
           <span class="topic-pill">Hotels</span>
         </div>
         <div class="card-cta">
-          <span class="card-link disabled">Coming Soon</span>
-          <span class="guide-count">Guide in progress</span>
+          <span class="card-link">Read Guide</span>
+          <span class="guide-count">4 sections</span>
         </div>
       </div>
-    </div>
-
-    <!-- UNIVERSAL -->
-    <div class="guide-card" style="opacity:0.75;">
+    </a>
+  </div> <!-- Ends Card grid Disney-->
+  
+  <div class="cards-grid"><!-- Begin Card grid Universal-->
+    <!-- UNIVERSAL Florida -->
+    <a href="/uf" target="_blank" class="guide-card">
       <div class="card-image">
         <img src="../images/Universal.jpg" alt="Universal"/>
         <div class="overlay"></div>
         <div class="card-badge coming">Coming Soon</div>
       </div>
       <div class="card-body">
-        <h3>Universal Vacations</h3>
+        <h3>Universal Florida</h3>
         <p>Express Pass strategy, Wizarding World tips, Epic Universe preview, and how to combine Universal with a Walt Disney World trip for the ultimate Orlando vacation.</p>
         <div class="topics">
           <span class="topic-pill">Express Pass</span>
@@ -464,9 +466,30 @@
           <span class="guide-count">Guide in progress</span>
         </div>
       </div>
+    </a>
+      <!-- UNIVERSAL Hollywood -->
+    <a href="/uh" target="_blank" class="guide-card">
+      <div class="card-image">
+        <img src="../images/Universal.jpg" alt="Universal"/>
+        <div class="overlay"></div>
+        <div class="card-badge coming">Coming Soon</div>
+      </div>
+      <div class="card-body">
+        <h3>Universal Hollywood</h3>
+        <p>Express Pass strategy, Wizarding World tips, Epic Universe preview, and how to combine Universal with a Walt Disney World trip for the ultimate Orlando vacation.</p>
+        <div class="topics">
+          <span class="topic-pill">Express Pass</span>
+          <span class="topic-pill">Harry Potter</span>
+          <span class="topic-pill">Epic Universe</span>
+          <span class="topic-pill">Orlando Combos</span>
+        </div>
+        <div class="card-cta">
+          <span class="card-link disabled">Coming Soon</span>
+          <span class="guide-count">Guide in progress</span>
+        </div>
+      </div>
+    </a>
     </div>
-
-  </div>
 </section>
 
 <!-- JASON CALLOUT -->

@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disneyland Resort Guide | The Imagineer Dad</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  a { color: inherit; text-decoration: none; }
+
+  :root {
+    --navy: #0c1138;
+    --navy-light: #16205a;
+    --gold: #e8a020;
+    --gold-light: #ffd84d;
+    --purple: #9900ff;
+    --purple-light: #bb44ff;
+    --purple-dark: #6600bb;
+    --cream: #f8f4ee;
+    --text: #2a2a3a;
+    --text-light: #5a5a72;
+    --white: #ffffff;
+  }
+
+  body { font-family: 'Montserrat', sans-serif; color: var(--text); background: var(--white); line-height: 1.7; }
+
+  /* NAV */
+  .site-header {
+    background: var(--navy); padding: 0 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px; position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  }
+  .site-logo { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 20px; color: var(--gold-light); letter-spacing: 1px; }
+  .site-logo span { color: white; font-weight: 400; font-style: italic; font-size: 14px; letter-spacing: 3px; display: block; }
+  .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+  .nav-links a { color: rgba(255,255,255,0.75); font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--purple-light); }
+  .nav-cta { background: linear-gradient(90deg, var(--gold), var(--gold-light)); color: var(--navy) !important; padding: 8px 20px; border-radius: 30px; font-weight: 700 !important; }
+  @media(max-width:600px){ .site-header{padding:0 16px;} .nav-links li:nth-child(1){ display:none; } }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #08102e 0%, #1a0c4a 40%, #2a0060 100%);
+    color: white; padding: 80px 40px; text-align: center; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(153,0,255,0.14) 0%, transparent 70%);
+  }
+  .hero-badge { display: inline-block; border: 1px solid rgba(153,0,255,0.5); color: var(--purple-light); font-size: 11px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; padding: 6px 18px; border-radius: 30px; margin-bottom: 20px; position: relative; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 58px); font-weight: 900; line-height: 1.1; margin-bottom: 16px; position: relative; }
+  .hero h1 span { background: linear-gradient(90deg, #ffd84d, #fff5a0, #ffaa30); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero p { font-size: 17px; color: rgba(255,255,255,0.75); max-width: 620px; margin: 0 auto 32px; font-weight: 300; position: relative; }
+  .hero-cta { display: inline-block; background: linear-gradient(90deg, #ffd84d, #ffaa30); color: var(--navy); font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; padding: 14px 36px; border-radius: 40px; box-shadow: 0 4px 20px rgba(255,180,30,0.35); }
+
+  /* LAYOUT */
+  .container { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  .section { padding: 64px 0; border-bottom: 1px solid #eee; }
+  .section:last-of-type { border-bottom: none; }
+
+  .section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; }
+  .section-icon { width: 52px; height: 52px; background: linear-gradient(135deg, var(--purple-dark), var(--purple)); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+  .section-title-wrap .subtitle { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--purple); margin-bottom: 4px; }
+  .section-title-wrap h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; color: var(--navy); line-height: 1.2; }
+
+  /* INTRO BANNER */
+  .intro-banner { background: var(--cream); border-left: 4px solid var(--purple); padding: 28px 40px; max-width: 900px; margin: 56px auto; border-radius: 0 8px 8px 0; }
+  .intro-banner p { font-size: 16px; color: var(--text); line-height: 1.8; }
+
+  /* PARK CARDS */
+  .parks-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  @media(max-width:700px){ .parks-grid { grid-template-columns: 1fr; } }
+  .park-card { border-radius: 14px; overflow: hidden; border: 1px solid #e8e4f0; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .park-card-header { padding: 20px 24px; color: white; }
+  .park-card-header.dl  { background: linear-gradient(135deg, #1a3a8a, #0d2060); }
+  .park-card-header.dca { background: linear-gradient(135deg, #7a1a2a, #501020); }
+  .park-card-header h3 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 900; margin-bottom: 4px; }
+  .park-card-header .park-tag { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; opacity: 0.75; }
+  .park-card-body { padding: 20px 24px; background: white; }
+  .park-card-body p { font-size: 13px; color: var(--text-light); line-height: 1.65; margin-bottom: 14px; }
+  .must-rides { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .must-rides li { font-size: 12px; font-weight: 600; color: var(--text); display: flex; gap: 8px; align-items: center; }
+  .must-rides li::before { content: '🎢'; font-size: 12px; }
+  .must-rides li.show::before { content: '🎭'; }
+  .must-rides li.char::before { content: '✨'; }
+  .must-rides li.food::before { content: '🍽️'; }
+
+  /* FEATURE GRID */
+  .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .feature-card { background: var(--cream); border-radius: 12px; padding: 24px; border: 1px solid #e0dbd0; }
+  .feature-card .f-icon { font-size: 28px; margin-bottom: 10px; }
+  .feature-card h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .feature-card p { font-size: 13px; color: var(--text-light); line-height: 1.65; }
+
+  /* LIGHTNING LANE TABLE */
+  .ll-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media(max-width:700px){ .ll-grid { grid-template-columns: 1fr; } }
+  .ll-card { border-radius: 12px; padding: 22px; color: white; }
+  .ll-card.llmp { background: linear-gradient(135deg, var(--purple-dark), var(--purple)); }
+  .ll-card.llsp { background: linear-gradient(135deg, #0e4a8a, #092d62); }
+  .ll-card.llpp { background: linear-gradient(135deg, #8a6000, #c49000); }
+  .ll-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .ll-card .ll-abbr { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; opacity: 0.7; margin-bottom: 10px; }
+  .ll-card p { font-size: 12px; opacity: 0.85; line-height: 1.6; }
+  .ll-card .ll-price { margin-top: 10px; font-size: 13px; font-weight: 700; }
+
+  /* WHEN TO GO */
+  .months-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  @media(max-width:700px){ .months-grid { grid-template-columns: repeat(2,1fr); } }
+  .month-card { border-radius: 10px; padding: 16px; text-align: center; border: 1px solid #e8e4f0; }
+  .month-card.best  { border-color: #28a060; background: #f0fff8; }
+  .month-card.good  { border-color: #4a8ae8; background: #f0f4ff; }
+  .month-card.busy  { border-color: #e8a020; background: #fffaf0; }
+  .month-card.avoid { border-color: #c04040; background: #fff0f0; }
+  .month-card .m-name  { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .month-card .m-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+  .month-card.best  .m-label { color: #1a7a46; }
+  .month-card.good  .m-label { color: #2a5ac8; }
+  .month-card.busy  .m-label { color: #b87000; }
+  .month-card.avoid .m-label { color: #a03030; }
+  .month-card p { font-size: 11px; color: var(--text-light); margin-top: 6px; line-height: 1.4; }
+
+  /* TWO COL */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media(max-width:700px){ .two-col { grid-template-columns: 1fr; } }
+  .card { background: var(--white); border: 1px solid #e8e4f0; border-radius: 12px; padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+  .card.included { border-top: 3px solid #28a060; }
+  .card.extra    { border-top: 3px solid var(--purple); }
+  .card h3 { font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+  .card.included h3 { color: #1a7a46; }
+  .card.extra    h3 { color: var(--purple-dark); }
+  .check-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .check-list li { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 1.5; }
+  .check-list li::before { content: '✓'; color: #28a060; font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+  .plus-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .plus-list li { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 1.5; }
+  .plus-list li::before { content: '+'; color: var(--purple); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+
+  /* HIGHLIGHT BOX */
+  .highlight-box { background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple) 100%); color: white; border-radius: 16px; padding: 36px 40px; margin: 40px 0; }
+  .highlight-box h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; color: white; margin-bottom: 12px; }
+  .highlight-box p { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.7; }
+  .highlight-box ul { list-style: none; margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
+  @media(max-width:600px){ .highlight-box ul { grid-template-columns: 1fr; } }
+  .highlight-box ul li { font-size: 13px; color: rgba(255,255,255,0.85); display: flex; gap: 8px; }
+  .highlight-box ul li::before { content: '⭐'; font-size: 11px; margin-top: 3px; }
+
+  /* RESORT TIERS */
+  .resort-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+  @media(max-width:700px){ .resort-grid { grid-template-columns: 1fr; } }
+  .resort-card { border-radius: 12px; padding: 24px; border: 1px solid #e8e4f0; }
+  .resort-card.onsite   { border-top: 3px solid var(--purple); }
+  .resort-card.moderate { border-top: 3px solid var(--gold); }
+  .resort-card.neighbor { border-top: 3px solid #4a8ae8; }
+  .resort-card h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .resort-card .price { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+  .resort-card.onsite   .price { color: var(--purple); }
+  .resort-card.moderate .price { color: var(--gold); }
+  .resort-card.neighbor .price { color: #2a5ac8; }
+  .resort-card p { font-size: 13px; color: var(--text-light); line-height: 1.6; margin-bottom: 10px; }
+  .resort-card .examples { font-size: 11px; font-weight: 600; color: var(--text); }
+
+  /* GOOD NEIGHBOR */
+  .gn-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+  @media(max-width:900px){ .gn-grid { grid-template-columns: repeat(2,1fr); } }
+  @media(max-width:500px){ .gn-grid { grid-template-columns: 1fr; } }
+  .gn-card { border-radius: 12px; padding: 20px; border: 1px solid #e8e4f0; background: white; }
+  .gn-card .gn-tier { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+  .gn-card.gn-mod  .gn-tier { color: #2a5ac8; }
+  .gn-card.gn-del  .gn-tier { color: var(--gold); }
+  .gn-card.gn-sup  .gn-tier { color: var(--purple); }
+  .gn-card.gn-suit .gn-tier { color: #1a7a46; }
+  .gn-card h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .gn-card p  { font-size: 12px; color: var(--text-light); line-height: 1.55; }
+
+  /* TIPS */
+  .tips-list { display: flex; flex-direction: column; gap: 14px; }
+  .tip { display: flex; gap: 16px; align-items: flex-start; background: var(--cream); border-radius: 10px; padding: 16px 20px; border-left: 3px solid var(--purple); }
+  .tip-num { background: linear-gradient(135deg, var(--purple-dark), var(--purple)); color: white; font-weight: 900; font-size: 13px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .tip p { font-size: 14px; line-height: 1.6; color: var(--text); }
+  .tip strong { color: var(--navy); }
+
+  /* CTA */
+  .cta-section { background: linear-gradient(135deg, #0a0e28 0%, #1a0040 50%, #0c0030 100%); color: white; text-align: center; padding: 80px 40px; }
+  .cta-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 44px); font-weight: 900; margin-bottom: 16px; }
+  .cta-section h2 span { background: linear-gradient(90deg, var(--purple-light), #dd88ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .cta-section p { color: rgba(255,255,255,0.72); font-size: 15px; max-width: 560px; margin: 0 auto 32px; font-weight: 300; }
+  .cta-btn { display: inline-block; background: linear-gradient(90deg, #ffd84d, #ffaa30); color: var(--navy); font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; padding: 16px 40px; border-radius: 40px; box-shadow: 0 6px 24px rgba(255,180,30,0.4); }
+  .cta-contact { margin-top: 24px; font-size: 13px; color: rgba(255,255,255,0.5); }
+  .cta-contact a { color: var(--gold-light); }
+
+  /* FOOTER */
+  .site-footer { background: #08091c; color: rgba(255,255,255,0.4); text-align: center; padding: 28px 24px; font-size: 11px; letter-spacing: 1px; }
+  .site-footer a { color: var(--gold-light); opacity: 0.6; }
+
+  @media(max-width:480px){
+    .hero { padding: 50px 20px; }
+    .section { padding: 44px 0; }
+    .container { padding: 0 16px; }
+    .section-title-wrap h2 { font-size: 22px; }
+    .intro-banner { padding: 20px 24px; margin: 36px auto; }
+    .highlight-box { padding: 24px 20px; }
+    .cta-section { padding: 56px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="site-header">
+  <a href="/" class="site-logo">The Imagineer Dad<span>Wish Upon a Castle</span></a>
+  <ul class="nav-links">
+    <li><a href="/#about">About</a></li>
+    <li><a href="/guides">Insider Guides</a></li>
+    <li><a href="/cruise">Cruise Guide</a></li>
+    <li><a href="/wdw">Walt Disney World</a></li>
+    <li><a href="https://form.jotform.com/Jason_Strang/request-a-disney-quote" target="_blank" class="nav-cta">Request a Quote</a></li>
+  </ul>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Insider Guide</div>
+  <h1>Your Complete Guide to<br><span>Disneyland Resort</span></h1>
+  <p>Two incredible parks. Seventy years of magic. Here's everything your family needs to know — from a dad who's done the homework so you don't have to.</p>
+  <a href="https://form.jotform.com/Jason_Strang/request-a-disney-quote" target="_blank" class="hero-cta">✨ Plan My Disneyland Trip</a>
+</section>
+
+<!-- INTRO BANNER -->
+<div class="intro-banner">
+  <p>Disneyland Resort in Anaheim, California is where Walt Disney's dream began in 1955 — and today it's home to two amazing theme parks, three Disney-owned resort hotels, the Downtown Disney District, and over 50 Good Neighbor Hotels nearby. Whether it's your first time or your fifteenth, this guide will help you make the most of every magical minute.</p>
+</div>
+
+<!-- SECTION 1: THE PARKS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon">🏰</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">The Resort</div>
+        <h2>Two Parks, Endless Magic</h2>
+      </div>
+    </div>
+
+    <div class="parks-grid">
+
+      <!-- DISNEYLAND PARK -->
+      <div class="park-card">
+        <div class="park-card-header dl">
+          <div class="park-tag">Since 1955 · The Original</div>
+          <h3>Disneyland Park</h3>
+        </div>
+        <div class="park-card-body">
+          <p>Walt's original park is a true bucket-list destination. From Main Street U.S.A. to the outer reaches of Galaxy's Edge, every land tells a story — and many of the classic attractions are things Walt himself walked through.</p>
+          <ul class="must-rides">
+            <li>Star Wars: Rise of the Resistance</li>
+            <li>Indiana Jones Adventure</li>
+            <li>Tiana's Bayou Adventure</li>
+            <li>Haunted Mansion</li>
+            <li>Space Mountain</li>
+            <li>Pirates of the Caribbean</li>
+            <li>Big Thunder Mountain Railroad</li>
+            <li>Millennium Falcon: Smugglers Run</li>
+            <li class="show">Bluey's Best Day Ever!</li>
+            <li class="show">Fantasmic</li>
+            <li class="food">Blue Bayou Restaurant (New Orleans Square)</li>
+            <li class="food">The Golden Horseshoe (Where Walt & Lillian Disney celebrated 30 years)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- DCA -->
+      <div class="park-card">
+        <div class="park-card-header dca">
+          <div class="park-tag">Disney California Adventure</div>
+          <h3>Disney California Adventure</h3>
+        </div>
+        <div class="park-card-body">
+          <p>A love letter to the Golden State — DCA is packed with thrills, Pixar magic, and the incredible Avengers Campus. It's often less crowded than Disneyland Park, making it a smart place to start your day.</p>
+          <ul class="must-rides">
+            <li>Guardians of the Galaxy – Mission: BREAKOUT!</li>
+            <li>Radiator Springs Racers (Cars Land)</li>
+            <li>Incredicoaster (Pixar Pier)</li>
+            <li>WEB SLINGERS: A Spider-Man Adventure</li>
+            <li>Toy Story Midway Mania!</li>
+            <li>Monsters, Inc. Mike & Sulley to the Rescue!</li>
+            <li>The Little Mermaid: Ariel's Undersea Adventure</li>
+            <li class="show">World of Color (nighttime spectacular)</li>
+            <li class="char">Avengers Campus — Character Encounters</li>
+            <li class="food">Lamplight Lounge (Pixar Pier)</li>
+            <li class="food">Carthay Circle Restaurant</li>
+            <li class="food">Pym Test Kitchen</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BONUS AREAS -->
+    <div class="highlight-box" style="margin-top:28px;">
+      <h3>Don't Miss: Special Lands & Experiences</h3>
+      <p>These areas within the parks deserve extra time — they're immersive worlds unto themselves.</p>
+      <ul>
+        <li>Star Wars: Galaxy's Edge — Batuu comes to life with two E-ticket rides, Savi's Workshop (custom lightsabers), and Droid Depot</li>
+        <li>Avengers Campus — Meet heroes, try Shawarma, and sling webs on WEB SLINGERS</li>
+        <li>Cars Land — One of Disney's most immersive lands; stunning at night</li>
+        <li>Pixar Pier — The Incredicoaster, Toy Story Mania, and gorgeous bay views</li>
+        <li>New Orleans Square — Home to Pirates of the Caribbean and Haunted Mansion</li>
+        <li>Downtown Disney District — Free-admission shopping, dining & entertainment hub</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: LIGHTNING LANE -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon">⚡</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Skip the Line</div>
+        <h2>Lightning Lane Explained</h2>
+      </div>
+    </div>
+
+    <p style="font-size:14px;color:var(--text-light);margin-bottom:28px;max-width:760px;">Disney's paid line-skip system gives you three options depending on your budget and how you want to spend your day. Every ride still has a free standby queue — Lightning Lane is completely optional, but can save significant time on busy days.</p>
+
+    <div class="ll-grid">
+      <div class="ll-card llmp">
+        <div class="ll-abbr">LLMP</div>
+        <h3>Lightning Lane Multi Pass</h3>
+        <p>Book arrival windows one at a time for included attractions at both parks. After scanning in, you can immediately book your next selection. Includes photo downloads.</p>
+        <div class="ll-price">From ~$32/person/day</div>
+      </div>
+      <div class="ll-card llsp">
+        <div class="ll-abbr">LLSP</div>
+        <h3>Lightning Lane Single Pass</h3>
+        <p>Purchased separately for the highest-demand rides not in the Multi Pass. At Disneyland: Star Wars: Rise of the Resistance. At DCA: Radiator Springs Racers. Up to 2 per day.</p>
+        <div class="ll-price">~$15–$35/person per ride</div>
+      </div>
+      <div class="ll-card llpp">
+        <div class="ll-abbr">LLPP</div>
+        <h3>Lightning Lane Premier Pass</h3>
+        <p>Covers all Multi Pass AND Single Pass attractions at both parks, all day, no return windows needed. Just walk up and ride. Limited availability — purchase up to 2 days in advance.</p>
+        <div class="ll-price">~$300–$449/person/day</div>
+      </div>
+    </div>
+
+    <div class="highlight-box" style="margin-top:32px;">
+      <h3>💡 Key Disneyland Lightning Lane Differences vs. Walt Disney World</h3>
+      <ul>
+        <li>At Disneyland, one Multi Pass purchase covers both parks (DCA included)</li>
+        <li>Multi Pass selections can only be made after entering a park on the day of your visit</li>
+        <li>Premier Pass covers both parks in a single purchase — great value vs. WDW</li>
+        <li>Hotel guests receive one complimentary Multi Pass Lightning Lane use per stay</li>
+        <li>Rise of the Resistance is the top Single Pass ride — book it the moment you enter</li>
+        <li>Popular rides like Indiana Jones & Radiator Springs Racers sell out fast — plan early</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: WHEN TO GO -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon">📅</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Crowd Calendar</div>
+        <h2>Timing Is Everything</h2>
+      </div>
+    </div>
+
+    <p style="font-size:14px;color:var(--text-light);margin-bottom:28px;max-width:760px;">Disneyland draws visitors year-round, but picking the right week makes a huge difference in wait times and enjoyment. Local school schedules and Southern California residents drive much of the crowd fluctuation.</p>
+
+    <div class="months-grid">
+      <div class="month-card best">
+        <div class="m-name">January</div>
+        <div class="m-label">🟢 Best</div>
+        <p>Post-holiday calm. Low crowds, short waits. Great deals on hotels.</p>
+      </div>
+      <div class="month-card good">
+        <div class="m-name">February</div>
+        <div class="m-label">🔵 Good</div>
+        <p>Valentine's week and President's Day weekend bring some crowds, but generally manageable.</p>
+      </div>
+      <div class="month-card busy">
+        <div class="m-name">March</div>
+        <div class="m-label">🟡 Busy</div>
+        <p>Spring break season ramps up mid-month. Watch out for school breaks.</p>
+      </div>
+      <div class="month-card avoid">
+        <div class="m-name">April</div>
+        <div class="m-label">🔴 Avoid</div>
+        <p>Spring break peak. One of the busiest periods of the year, especially around Easter.</p>
+      </div>
+      <div class="month-card best">
+        <div class="m-name">May</div>
+        <div class="m-label">🟢 Best</div>
+        <p>Late April–May is a sweet spot. Schools in session, weather is warm, crowds are lighter.</p>
+      </div>
+      <div class="month-card busy">
+        <div class="m-name">June</div>
+        <div class="m-label">🟡 Busy</div>
+        <p>Summer begins. Crowds build fast as school lets out across the country.</p>
+      </div>
+      <div class="month-card avoid">
+        <div class="m-name">July</div>
+        <div class="m-label">🔴 Avoid</div>
+        <p>Peak summer crowds. 4th of July week is among the most crowded of the year.</p>
+      </div>
+      <div class="month-card busy">
+        <div class="m-name">August</div>
+        <div class="m-label">🟡 Busy</div>
+        <p>Still busy. Late August starts to ease as schools return in other states.</p>
+      </div>
+      <div class="month-card good">
+        <div class="m-name">September</div>
+        <div class="m-label">🔵 Good</div>
+        <p>Post-Labor Day is a hidden gem. Halloween season starts late September with Oogie Boogie Bash.</p>
+      </div>
+      <div class="month-card good">
+        <div class="m-name">October</div>
+        <div class="m-label">🔵 Good</div>
+        <p>Halloween Time is incredible. Weekdays are manageable; weekends get busy for Oogie Boogie Bash.</p>
+      </div>
+      <div class="month-card busy">
+        <div class="m-name">November</div>
+        <div class="m-label">🟡 Busy</div>
+        <p>Thanksgiving week is one of the most crowded periods. Early November is quieter.</p>
+      </div>
+      <div class="month-card avoid">
+        <div class="m-name">December</div>
+        <div class="m-label">🔴 Avoid</div>
+        <p>Holiday magic is stunning, but crowds are intense — especially Dec. 26–Jan. 1.</p>
+      </div>
+    </div>
+
+    <div class="feature-grid" style="margin-top:32px;">
+      <div class="feature-card">
+        <div class="f-icon">🎃</div>
+        <h3>Oogie Boogie Bash</h3>
+        <p>Disney California Adventure's separately-ticketed Halloween party runs select nights in September and October. Includes special character meets, trick-or-treating, and exclusive entertainment. Tickets sell out fast — book as early as possible.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🎄</div>
+        <h3>Holiday Time at Disneyland</h3>
+        <p>From early November through early January, the resort transforms with holiday décor, seasonal overlays on beloved attractions, and the beloved Candlelight Processional. Stunning, but plan around high crowds.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🎆</div>
+        <h3>Disneyland's 70th Anniversary</h3>
+        <p>2025 marks Disneyland's 70th anniversary, bringing special entertainment, new attractions, and exclusive experiences. The celebration continues into 2026 — an incredible time to visit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: WHERE TO STAY -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon">🏨</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Accommodations</div>
+        <h2>Where to Stay</h2>
+      </div>
+    </div>
+
+    <!-- DISNEY RESORT HOTELS -->
+    <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:16px;">Disney Resort Hotels</h3>
+    <p style="font-size:14px;color:var(--text-light);margin-bottom:20px;max-width:760px;">Staying on property puts you fully inside the Disney bubble — and comes with exclusive perks, including one complimentary Lightning Lane Multi Pass entry per guest per stay (as of January 2025).</p>
+
+    <div class="resort-grid">
+      <div class="resort-card onsite">
+        <h3>Grand Californian Hotel & Spa</h3>
+        <div class="price">From ~$650+/night · Deluxe</div>
+        <p>Disney's crown jewel in Anaheim. This Arts & Crafts-style lodge has a private entrance directly into Disney California Adventure and Downtown Disney. Character dining at Storytellers Café. Pool complex with waterslide. The ultimate Disneyland stay.</p>
+        <div class="examples">Best for: Families wanting full immersion & luxury</div>
+      </div>
+      <div class="resort-card onsite">
+        <h3>Disneyland Hotel</h3>
+        <div class="price">From ~$450+/night · Deluxe</div>
+        <p>The original Disneyland hotel — reimagined and reopened in 2023 with stunning new theming inspired by classic Disney attractions. Short walk to the parks. Fantasy Tower rooms feature Disney décor throughout.</p>
+        <div class="examples">Best for: Disney fans who want classic magic</div>
+      </div>
+      <div class="resort-card onsite">
+        <h3>Pixar Place Hotel</h3>
+        <div class="price">From ~$350+/night · Moderate</div>
+        <p>Formerly Paradise Pier Hotel, now fully reimagined with Pixar theming throughout. Great location, more affordable than its sister properties, with the same resort perks including the complimentary Lightning Lane benefit.</p>
+        <div class="examples">Best for: Families who want on-site perks at lower cost</div>
+      </div>
+    </div>
+
+    <!-- GOOD NEIGHBOR HOTELS -->
+    <div style="margin-top:48px;">
+      <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:8px;">Good Neighbor Hotels</h3>
+      <p style="font-size:14px;color:var(--text-light);margin-bottom:8px;max-width:760px;">Disneyland's Good Neighbor Hotel program features over 50 hotels hand-picked by Disney for quality, comfort, and proximity to the parks — all within about a mile of the resort gates. You can book them through the official Disneyland website and bundle tickets into a vacation package.</p>
+      <p style="font-size:13px;color:var(--text-light);margin-bottom:24px;max-width:760px;"><strong style="color:var(--navy);">Note:</strong> Good Neighbor Hotels do not include the complimentary Lightning Lane benefit, but they are significantly more affordable than Disney-owned hotels and many offer free parking, free breakfast, and free shuttles to the parks.</p>
+
+      <div style="background:var(--cream);border-left:4px solid #4a8ae8;border-radius:0 8px 8px 0;padding:20px 28px;margin-bottom:28px;">
+        <p style="font-size:14px;color:var(--text);"><strong>Good Neighbor Package Perks (when booked through Disney)</strong> — When you book a Good Neighbor Hotel vacation package through Walt Disney Travel Company, your package includes park tickets, a collectible pin &amp; lanyard, and 10% off at many participating Downtown Disney dining and merchandise locations. Ask me about the latest package offers!</p>
+      </div>
+
+      <div class="gn-grid">
+        <div class="gn-card gn-del">
+          <div class="gn-tier">Deluxe</div>
+          <h4>Westin Anaheim Resort</h4>
+          <p>High-end luxury directly across from the park entrance. Stunning rooftop pool and views. One of the most premium Good Neighbor options.</p>
+        </div>
+        <div class="gn-card gn-del">
+          <div class="gn-tier">Deluxe</div>
+          <h4>Hilton Anaheim</h4>
+          <p>Full-service resort hotel steps from the resort. Large pool complex, multiple restaurants, and easy park access.</p>
+        </div>
+        <div class="gn-card gn-sup">
+          <div class="gn-tier">Superior</div>
+          <h4>Anaheim Majestic Garden Hotel</h4>
+          <p>Spacious rooms, beautiful grounds, and a free shuttle to the parks. Disney Authorized Good Neighbor — a local favorite for families.</p>
+        </div>
+        <div class="gn-card gn-sup">
+          <div class="gn-tier">Superior</div>
+          <h4>Marriott Anaheim</h4>
+          <p>Large full-service hotel close to the parks. Pool, fitness center, and solid family-friendly amenities with Marriott points earning.</p>
+        </div>
+        <div class="gn-card gn-mod">
+          <div class="gn-tier">Moderate</div>
+          <h4>Grand Legacy at the Park</h4>
+          <p>One of the closest Good Neighbor Hotels to the park gates — about a 7-minute walk. Heated pool, splash pad, and great value pricing.</p>
+        </div>
+        <div class="gn-card gn-mod">
+          <div class="gn-tier">Moderate</div>
+          <h4>Tropicana Inn & Suites</h4>
+          <p>Budget-friendly and literally across the street from Disneyland. Basic but clean — hard to beat for location-conscious families.</p>
+        </div>
+        <div class="gn-card gn-suit">
+          <div class="gn-tier">Suites</div>
+          <h4>Anaheim Portofino Inn & Suites</h4>
+          <p>All-suite hotel popular for families who need extra space. Package pricing available through Disney. Free shuttles to the parks.</p>
+        </div>
+        <div class="gn-card gn-mod">
+          <div class="gn-tier">Moderate</div>
+          <h4>Hotel Indigo Anaheim</h4>
+          <p>Free parking (a rarity near Disneyland), no resort fee, and Anaheim GardenWalk next door. Great pick for adults and families alike.</p>
+        </div>
+      </div>
+
+      <p style="font-size:12px;color:var(--text-light);margin-top:16px;">There are over 50 Good Neighbor Hotels in total — organized into Moderate, Deluxe, Superior, and Suites categories. I can help you find the exact right fit for your family's size, budget, and needs. <a href="https://form.jotform.com/Jason_Strang/request-a-disney-quote" target="_blank" style="color:var(--purple);font-weight:700;">Request a quote</a> and let's find your perfect match.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: DINING -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon">🍽️</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Food & Dining</div>
+        <h2>Where to Eat at Disneyland Resort</h2>
+      </div>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="f-icon">🏆</div>
+        <h3>Signature Dining</h3>
+        <p><strong>Blue Bayou Restaurant</strong> — the iconic waterside restaurant inside Pirates of the Caribbean. Reserve as early as possible. <strong>Carthay Circle</strong> in DCA for a refined California dining experience. <strong>Napa Rose</strong> at the Grand Californian for fine dining.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">👑</div>
+        <h3>Character Dining</h3>
+        <p><strong>Storytellers Café</strong> at Grand Californian Hotel — breakfast and lunch with Disney Characters. <strong>Goofy's Kitchen</strong> at Disneyland Hotel — all-day dining with a revolving cast of characters including Goofy, Pluto, and friends.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🍕</div>
+        <h3>Quick-Service Favorites</h3>
+        <p>Ronto Roasters (Galaxy's Edge) for Ronto Wraps, Oga's Cantina for Star Wars-themed drinks, Award Wieners (DCA), Shawarma Palace (Avengers Campus), and Alien Pizza Planet in Tomorrowland.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🛍️</div>
+        <h3>Downtown Disney</h3>
+        <p>The free-admission district outside the parks has grown significantly. Earl of Sandwich, Black Tap Craft Burgers, Salt &amp; Straw ice cream, and the always-buzzing Ballast Point Brewing &amp; Spirits are popular stops.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🥐</div>
+        <h3>Must-Try Snacks</h3>
+        <p>Monte Cristo Sandwich at Blue Bayou, Mickey-shaped beignets in New Orleans Square, Dole Whip in Adventureland, Churros throughout the park, and the famous Corn Dogs from the Little Red Wagon on Main Street.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">📱</div>
+        <h3>Dining Reservations</h3>
+        <p>Reservations can be made up to 60 days in advance through the Disneyland app or website. Blue Bayou, Napa Rose, and Carthay Circle book up fast — reserve the moment your window opens. Quick-service requires no reservation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: WHAT'S INCLUDED -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon">🎟️</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Know Before You Go</div>
+        <h2>What's Included vs. Extra Cost</h2>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="card included">
+        <h3>✅ Included with Park Admission</h3>
+        <ul class="check-list">
+          <li>Access to all standard attractions in both parks (with valid park reservation)</li>
+          <li>Live entertainment — parades, street performers, character cavalcades</li>
+          <li>Nighttime spectaculars — World of Color, fireworks, Fantasmic!</li>
+          <li>Character meet & greets (standard)</li>
+          <li>Downtown Disney District access (no ticket required)</li>
+          <li>Play Disney Parks app interactive experiences throughout Galaxy's Edge</li>
+          <li>Park Hopper (if added to ticket) — cross between parks from 11 AM</li>
+          <li>Free standby queues for every ride</li>
+        </ul>
+      </div>
+      <div class="card extra">
+        <h3>+ Costs Extra</h3>
+        <ul class="plus-list">
+          <li>Lightning Lane Multi Pass (~$32+/person/day)</li>
+          <li>Lightning Lane Single Pass (~$15–$35/ride)</li>
+          <li>Lightning Lane Premier Pass (~$300–$449/person/day)</li>
+          <li>Savi's Workshop — Build a Lightsaber (~$299.99)</li>
+          <li>Droid Depot — Build a Droid (~$119.99)</li>
+          <li>Oga's Cantina (reservation recommended, walk-in sometimes available)</li>
+          <li>Bibbidi Bobbidi Boutique — princess makeovers</li>
+          <li>Special ticketed events (Oogie Boogie Bash, Mickey's Halloween Party)</li>
+          <li>All food, beverages, and merchandise</li>
+          <li>Parking (~$35/day general; ~$45–$60 preferred/preferred plus)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: PRO TIPS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon">🎯</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">From The Imagineer Dad</div>
+        <h2>8 Pro Tips for Disneyland</h2>
+      </div>
+    </div>
+    <div class="tips-list">
+      <div class="tip">
+        <div class="tip-num">1</div>
+        <p><strong>Book dining reservations 60 days out.</strong> Blue Bayou and Napa Rose fill up within hours of the booking window opening. Set an alarm, open the Disneyland app at 6 AM Pacific, and book the moment you can.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">2</div>
+        <p><strong>Start in Disney California Adventure.</strong> DCA tends to be less crowded at rope drop. Knock out Radiator Springs Racers or Guardians early, then head to Disneyland once lines build there.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">3</div>
+        <p><strong>Rise of the Resistance is worth the Single Pass.</strong> It's one of the best theme park experiences anywhere in the world. The wait on a busy day can exceed 90 minutes. The ~$25–$35 Single Pass is often money well spent.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">4</div>
+        <p><strong>Use the Disneyland app from the moment you enter.</strong> Book your first Lightning Lane selection immediately. You can make your next selection as soon as you scan in — make the most of every minute.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">5</div>
+        <p><strong>Stay on-property if it fits your budget.</strong> The Grand Californian's private DCA entrance alone can save 15–20 minutes of walking per park trip — and that complimentary Lightning Lane entry is a real perk over multi-day stays.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">6</div>
+        <p><strong>Galaxy's Edge is magical at night.</strong> The land comes to life after dark with glowing lights and projection shows on the spires. If you visit during the day, plan a return after sunset.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">7</div>
+        <p><strong>Weekdays beat weekends — always.</strong> If you have any flexibility, visiting Tuesday through Thursday makes a noticeable difference. Local Southern California residents crowd the parks on weekends year-round.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">8</div>
+        <p><strong>Park reservations are required.</strong> Even with a valid ticket, you must also have a park reservation for each day. Book as soon as you purchase your tickets — availability, especially on peak days, can be limited.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Ready to Visit the<br><span>Happiest Place on Earth?</span></h2>
+  <p>I'll handle all the details — from park tickets and dining reservations to hotel recommendations and Lightning Lane strategy. My planning services are completely free to you.</p>
+  <a href="https://form.jotform.com/Jason_Strang/request-a-disney-quote" target="_blank" class="cta-btn">✨ Request Your Free Quote</a>
+  <div class="cta-contact">
+    Questions? Reach me at <a href="mailto:jason@wishuponacastle.com">jason@wishuponacastle.com</a> or <a href="tel:8436089481">843-608-9481</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p>© 2025 The Imagineer Dad · Wish Upon a Castle LLC · An Authorized Disney Vacation Planner · Earmarked Silver Producer</p>
+  <p style="margin-top:8px;"><a href="/">Home</a> &nbsp;·&nbsp; <a href="/guides">Guides</a> &nbsp;·&nbsp; <a href="/cruise">Disney Cruise</a> &nbsp;·&nbsp; <a href="/wdw">Walt Disney World</a></p>
+</footer>
+
+</body>
+</html>
