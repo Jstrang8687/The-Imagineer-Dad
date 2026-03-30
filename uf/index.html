@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Universal Orlando Resort Guide | The Imagineer Dad</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  a { color: inherit; text-decoration: none; }
+
+  :root {
+    --navy: #0c1138;
+    --navy-light: #16205a;
+    --gold: #e8a020;
+    --gold-light: #ffd84d;
+    --purple: #9900ff;
+    --purple-light: #bb44ff;
+    --purple-dark: #6600bb;
+    --cream: #f8f4ee;
+    --text: #2a2a3a;
+    --text-light: #5a5a72;
+    --white: #ffffff;
+    --uni-blue: #0057a8;
+    --uni-blue-dark: #003d7a;
+  }
+
+  body { font-family: 'Montserrat', sans-serif; color: var(--text); background: var(--white); line-height: 1.7; }
+
+  /* NAV */
+  .site-header {
+    background: var(--navy); padding: 0 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px; position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  }
+  .site-logo { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 20px; color: var(--gold-light); letter-spacing: 1px; }
+  .site-logo span { color: white; font-weight: 400; font-style: italic; font-size: 14px; letter-spacing: 3px; display: block; }
+  .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+  .nav-links a { color: rgba(255,255,255,0.75); font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--purple-light); }
+  .nav-cta { background: linear-gradient(90deg, var(--gold), var(--gold-light)); color: var(--navy) !important; padding: 8px 20px; border-radius: 30px; font-weight: 700 !important; }
+  @media(max-width:600px){ .site-header{padding:0 16px;} .nav-links li:nth-child(1){ display:none; } }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #060d28 0%, #001845 50%, #002a6e 100%);
+    color: white; padding: 80px 40px; text-align: center; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0,87,168,0.2) 0%, transparent 70%);
+  }
+  .hero-badge { display: inline-block; border: 1px solid rgba(0,140,255,0.5); color: #66bbff; font-size: 11px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; padding: 6px 18px; border-radius: 30px; margin-bottom: 20px; position: relative; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 58px); font-weight: 900; line-height: 1.1; margin-bottom: 16px; position: relative; }
+  .hero h1 span { background: linear-gradient(90deg, #ffd84d, #fff5a0, #ffaa30); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero p { font-size: 17px; color: rgba(255,255,255,0.75); max-width: 640px; margin: 0 auto 32px; font-weight: 300; position: relative; }
+  .hero-cta { display: inline-block; background: linear-gradient(90deg, #ffd84d, #ffaa30); color: var(--navy); font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; padding: 14px 36px; border-radius: 40px; box-shadow: 0 4px 20px rgba(255,180,30,0.35); }
+
+  /* LAYOUT */
+  .container { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  .section { padding: 64px 0; border-bottom: 1px solid #eee; }
+  .section:last-of-type { border-bottom: none; }
+
+  .section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; }
+  .section-icon { width: 52px; height: 52px; background: linear-gradient(135deg, var(--uni-blue-dark), var(--uni-blue)); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+  .section-title-wrap .subtitle { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--uni-blue); margin-bottom: 4px; }
+  .section-title-wrap h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; color: var(--navy); line-height: 1.2; }
+
+  /* INTRO BANNER */
+  .intro-banner { background: var(--cream); border-left: 4px solid var(--uni-blue); padding: 28px 40px; max-width: 900px; margin: 56px auto; border-radius: 0 8px 8px 0; }
+  .intro-banner p { font-size: 16px; color: var(--text); line-height: 1.8; }
+
+  /* NEW BADGE */
+  .new-badge { display: inline-block; background: linear-gradient(90deg, #e8a020, #ffd84d); color: var(--navy); font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; margin-left: 8px; vertical-align: middle; }
+
+  /* PARK CARDS */
+  .parks-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  @media(max-width:700px){ .parks-grid { grid-template-columns: 1fr; } }
+  .park-card { border-radius: 14px; overflow: hidden; border: 1px solid #e8e4f0; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .park-card-header { padding: 20px 24px; color: white; }
+  .park-card-header.usf  { background: linear-gradient(135deg, #003d7a, #0057a8); }
+  .park-card-header.ioa  { background: linear-gradient(135deg, #1a3a20, #2a6030); }
+  .park-card-header.epic { background: linear-gradient(135deg, #1a0c4a, #3d0080); }
+  .park-card-header.vb   { background: linear-gradient(135deg, #0a4a6a, #0a7a9a); }
+  .park-card-header h3 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 900; margin-bottom: 4px; }
+  .park-card-header .park-tag { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; opacity: 0.75; }
+  .park-card-body { padding: 20px 24px; background: white; }
+  .park-card-body p { font-size: 13px; color: var(--text-light); line-height: 1.65; margin-bottom: 14px; }
+  .must-rides { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .must-rides li { font-size: 12px; font-weight: 600; color: var(--text); display: flex; gap: 8px; align-items: center; }
+  .must-rides li::before { content: '🎢'; font-size: 12px; }
+  .must-rides li.show::before  { content: '🎭'; }
+  .must-rides li.char::before  { content: '✨'; }
+  .must-rides li.food::before  { content: '🍽️'; }
+  .must-rides li.world::before { content: '🌍'; }
+
+  /* FEATURE GRID */
+  .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .feature-card { background: var(--cream); border-radius: 12px; padding: 24px; border: 1px solid #e0dbd0; }
+  .feature-card .f-icon { font-size: 28px; margin-bottom: 10px; }
+  .feature-card h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .feature-card p { font-size: 13px; color: var(--text-light); line-height: 1.65; }
+
+  /* EXPRESS PASS CARDS */
+  .ep-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media(max-width:700px){ .ep-grid { grid-template-columns: 1fr; } }
+  .ep-card { border-radius: 12px; padding: 22px; color: white; }
+  .ep-card.ep1 { background: linear-gradient(135deg, var(--uni-blue-dark), var(--uni-blue)); }
+  .ep-card.ep2 { background: linear-gradient(135deg, #5a0090, #8800cc); }
+  .ep-card.ep3 { background: linear-gradient(135deg, #8a6000, #c49000); }
+  .ep-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .ep-card .ep-abbr { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; opacity: 0.7; margin-bottom: 10px; }
+  .ep-card p { font-size: 12px; opacity: 0.85; line-height: 1.6; }
+  .ep-card .ep-price { margin-top: 10px; font-size: 13px; font-weight: 700; }
+
+  /* WHEN TO GO */
+  .months-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  @media(max-width:700px){ .months-grid { grid-template-columns: repeat(2,1fr); } }
+  .month-card { border-radius: 10px; padding: 16px; text-align: center; border: 1px solid #e8e4f0; }
+  .month-card.best  { border-color: #28a060; background: #f0fff8; }
+  .month-card.good  { border-color: #4a8ae8; background: #f0f4ff; }
+  .month-card.busy  { border-color: #e8a020; background: #fffaf0; }
+  .month-card.avoid { border-color: #c04040; background: #fff0f0; }
+  .month-card .m-name  { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .month-card .m-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+  .month-card.best  .m-label { color: #1a7a46; }
+  .month-card.good  .m-label { color: #2a5ac8; }
+  .month-card.busy  .m-label { color: #b87000; }
+  .month-card.avoid .m-label { color: #a03030; }
+  .month-card p { font-size: 11px; color: var(--text-light); margin-top: 6px; line-height: 1.4; }
+
+  /* TWO COL */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media(max-width:700px){ .two-col { grid-template-columns: 1fr; } }
+  .card { background: var(--white); border: 1px solid #e8e4f0; border-radius: 12px; padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+  .card.included { border-top: 3px solid #28a060; }
+  .card.extra    { border-top: 3px solid var(--uni-blue); }
+  .card h3 { font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+  .card.included h3 { color: #1a7a46; }
+  .card.extra    h3 { color: var(--uni-blue-dark); }
+  .check-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .check-list li { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 1.5; }
+  .check-list li::before { content: '✓'; color: #28a060; font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+  .plus-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .plus-list li { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 1.5; }
+  .plus-list li::before { content: '+'; color: var(--uni-blue); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+
+  /* HIGHLIGHT BOX */
+  .highlight-box { background: linear-gradient(135deg, var(--uni-blue-dark) 0%, var(--uni-blue) 100%); color: white; border-radius: 16px; padding: 36px 40px; margin: 40px 0; }
+  .highlight-box h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; color: white; margin-bottom: 12px; }
+  .highlight-box p { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.7; }
+  .highlight-box ul { list-style: none; margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
+  @media(max-width:600px){ .highlight-box ul { grid-template-columns: 1fr; } }
+  .highlight-box ul li { font-size: 13px; color: rgba(255,255,255,0.85); display: flex; gap: 8px; }
+  .highlight-box ul li::before { content: '⭐'; font-size: 11px; margin-top: 3px; }
+
+  /* HOTEL CARDS */
+  .resort-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+  @media(max-width:700px){ .resort-grid { grid-template-columns: 1fr; } }
+  .resort-card { border-radius: 12px; padding: 24px; border: 1px solid #e8e4f0; }
+  .resort-card.premier  { border-top: 3px solid var(--gold); }
+  .resort-card.preferred { border-top: 3px solid var(--uni-blue); }
+  .resort-card.value    { border-top: 3px solid #28a060; }
+  .resort-card h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .resort-card .price { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+  .resort-card.premier   .price { color: #b87000; }
+  .resort-card.preferred .price { color: var(--uni-blue); }
+  .resort-card.value     .price { color: #1a7a46; }
+  .resort-card p { font-size: 13px; color: var(--text-light); line-height: 1.6; margin-bottom: 10px; }
+  .resort-card .examples { font-size: 11px; font-weight: 600; color: var(--text); }
+  .express-tag { display: inline-block; background: #fff3cd; color: #7a4f00; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-top: 8px; letter-spacing: 0.5px; }
+  .no-express-tag { display: inline-block; background: #f0f0f0; color: #666; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-top: 8px; letter-spacing: 0.5px; }
+
+  /* TIPS */
+  .tips-list { display: flex; flex-direction: column; gap: 14px; }
+  .tip { display: flex; gap: 16px; align-items: flex-start; background: var(--cream); border-radius: 10px; padding: 16px 20px; border-left: 3px solid var(--uni-blue); }
+  .tip-num { background: linear-gradient(135deg, var(--uni-blue-dark), var(--uni-blue)); color: white; font-weight: 900; font-size: 13px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .tip p { font-size: 14px; line-height: 1.6; color: var(--text); }
+  .tip strong { color: var(--navy); }
+
+  /* CTA */
+  .cta-section { background: linear-gradient(135deg, #060d28 0%, #001845 50%, #002a6e 100%); color: white; text-align: center; padding: 80px 40px; }
+  .cta-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 44px); font-weight: 900; margin-bottom: 16px; }
+  .cta-section h2 span { background: linear-gradient(90deg, #66bbff, #aaddff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .cta-section p { color: rgba(255,255,255,0.72); font-size: 15px; max-width: 560px; margin: 0 auto 32px; font-weight: 300; }
+  .cta-btn { display: inline-block; background: linear-gradient(90deg, #ffd84d, #ffaa30); color: var(--navy); font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; padding: 16px 40px; border-radius: 40px; box-shadow: 0 6px 24px rgba(255,180,30,0.4); }
+  .cta-contact { margin-top: 24px; font-size: 13px; color: rgba(255,255,255,0.5); }
+  .cta-contact a { color: var(--gold-light); }
+
+  /* FOOTER */
+  .site-footer { background: #08091c; color: rgba(255,255,255,0.4); text-align: center; padding: 28px 24px; font-size: 11px; letter-spacing: 1px; }
+  .site-footer a { color: var(--gold-light); opacity: 0.6; }
+
+  @media(max-width:480px){
+    .hero { padding: 50px 20px; }
+    .section { padding: 44px 0; }
+    .container { padding: 0 16px; }
+    .section-title-wrap h2 { font-size: 22px; }
+    .intro-banner { padding: 20px 24px; margin: 36px auto; }
+    .highlight-box { padding: 24px 20px; }
+    .cta-section { padding: 56px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="site-header">
+  <a href="/" class="site-logo">The Imagineer Dad<span>Wish Upon a Castle</span></a>
+  <ul class="nav-links">
+    <li><a href="/#about">About</a></li>
+    <li><a href="/guides">Planning Guides</a></li>
+    <li><a href="/cruise">Cruise Guide</a></li>
+    <li><a href="/wdw">Walt Disney World</a></li>
+    <li><a href="https://form.jotform.com/Jason_Strang/request-a-disney-quote" target="_blank" class="nav-cta">Request a Quote</a></li>
+  </ul>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Planning Guide</div>
+  <h1>Your Complete Guide to<br><span>Universal Orlando Resort</span></h1>
+  <p>Four theme parks. Eleven hotels. A brand-new world that opened in 2025. Here's everything your family needs to plan the ultimate Universal vacation.</p>
+  <a href="https://form.jotform.com/Jason_Strang/request-a-disney-quote" target="_blank" class="hero-cta">✨ Plan My Universal Trip</a>
+</section>
+
+<!-- INTRO BANNER -->
+<div class="intro-banner">
+  <p>Universal Orlando Resort has transformed into a true multi-day destination. With the May 2025 opening of Universal Epic Universe — their fourth theme park and most ambitious project ever — families now need at least 4–5 days to experience everything the resort has to offer. Add in three original parks, eleven hotels, the Universal CityWalk dining and entertainment district, and Volcano Bay water park, and you have a vacation that rivals any destination in the world.</p>
+</div>
+
+<!-- SECTION 1: THE PARKS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon">🎬</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">The Resort</div>
+        <h2>Four Parks, One Epic Destination</h2>
+      </div>
+    </div>
+
+    <div class="parks-grid">
+
+      <!-- USF -->
+      <div class="park-card">
+        <div class="park-card-header usf">
+          <div class="park-tag">Since 1990 · The Original</div>
+          <h3>Universal Studios Florida</h3>
+        </div>
+        <div class="park-card-body">
+          <p>The original Florida park built on the "ride the movies" concept. Home to Harry Potter's Diagon Alley, Springfield, Hollywood, and some of Universal's most iconic experiences. A classic that keeps getting better.</p>
+          <ul class="must-rides">
+            <li>Harry Potter and the Escape from Gringotts</li>
+            <li>Hogwarts Express (requires park-to-park ticket)</li>
+            <li>Revenge of the Mummy</li>
+            <li>Transformers: The Ride 3D</li>
+            <li>MEN IN BLACK Alien Attack</li>
+            <li>Hollywood Rip Ride Rockit</li>
+            <li>Despicable Me Minion Mayhem</li>
+            <li>ILLUMINATION'S Villain-Con Minion Blast</li>
+            <li class="show">Animal Actors on Location!</li>
+            <li class="food">The Leaky Cauldron (Diagon Alley)</li>
+            <li class="food">Finnegan's Bar & Grill</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- IOA -->
+      <div class="park-card">
+        <div class="park-card-header ioa">
+          <div class="park-tag">Since 1999 · Islands of Adventure</div>
+          <h3>Universal Islands of Adventure</h3>
+        </div>
+        <div class="park-card-body">
+          <p>Home to the most thrilling rides in Orlando. Islands of Adventure is where Hogsmeade lives, VelociCoaster reigns, and every land is its own fully immersive world. The thrill-seeker's park.</p>
+          <ul class="must-rides">
+            <li>Jurassic World VelociCoaster</li>
+            <li>Hagrid's Magical Creatures Motorbike Adventure</li>
+            <li>Harry Potter and the Forbidden Journey</li>
+            <li>Hogwarts Express (requires park-to-park ticket)</li>
+            <li>The Incredible Hulk Coaster</li>
+            <li>Doctor Doom's Fearfall</li>
+            <li>Jurassic World: The Ride</li>
+            <li>The Amazing Adventures of Spider-Man</li>
+            <li>Skull Island: Reign of Kong</li>
+            <li class="food">Three Broomsticks (Hogsmeade)</li>
+            <li class="food">Mythos Restaurant</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- EPIC UNIVERSE -->
+      <div class="park-card">
+        <div class="park-card-header epic">
+          <div class="park-tag">Opened May 22, 2025 · Fourth Gate</div>
+          <h3>Universal Epic Universe <span class="new-badge">NEW</span></h3>
+        </div>
+        <div class="park-card-body">
+          <p>Universal's most ambitious park ever — five fully immersive worlds branching off a central hub called Celestial Park. With over 50 experiences, this is a full day park that has fundamentally changed what a theme park can be.</p>
+          <ul class="must-rides">
+            <li class="world">Celestial Park (central hub)</li>
+            <li>Harry Potter and the Battle at the Ministry (Ministry of Magic)</li>
+            <li>Monsters Unchained: The Frankenstein Experiment (Dark Universe)</li>
+            <li>Mine-Cart Madness (Super Nintendo World)</li>
+            <li>Mario Kart: Bowser's Challenge (Super Nintendo World)</li>
+            <li>How to Train Your Dragon — Isle of Berk rides</li>
+            <li class="char">Super Nintendo World — Power-Up Band interactions</li>
+            <li class="char">Character meet & greets across all five worlds</li>
+            <li class="food">Helios Grand Hotel rooftop bar (Epic Universe views)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- VOLCANO BAY -->
+      <div class="park-card">
+        <div class="park-card-header vb">
+          <div class="park-tag">Water Theme Park · Year-Round</div>
+          <h3>Universal Volcano Bay</h3>
+        </div>
+        <div class="park-card-body">
+          <p>Universal's Polynesian-themed water park uses TapuTapu wristbands instead of physical lines — you get a virtual queue for slides so you can explore the rest of the park while you wait. A genuinely different water park experience.</p>
+          <ul class="must-rides">
+            <li>Krakatau Aqua Coaster</li>
+            <li>Ko'okiri Body Plunge (124-ft drop slide)</li>
+            <li>Ohyah & Ohno Drop Slides</li>
+            <li>Honu ika Moana (surf raft slides)</li>
+            <li>Taniwha Tubes (racing slides)</li>
+            <li class="show">Waturi Beach wave pool</li>
+            <li class="food">Whakawaiwai Eats (poolside dining)</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- EPIC UNIVERSE WORLDS CALLOUT -->
+    <div class="highlight-box" style="margin-top:28px;">
+      <h3>🌌 Epic Universe's Five Worlds — A Closer Look</h3>
+      <p>Each world in Epic Universe has its own dedicated portal entrance, fully themed atmosphere, unique attractions, dining, and shopping. Plan to spend 2–3 hours per world minimum.</p>
+      <ul>
+        <li><strong>Celestial Park</strong> — The central hub with gardens, fountains, and a stunning nighttime transformation</li>
+        <li><strong>The Wizarding World of Harry Potter – Ministry of Magic</strong> — Inspired by the Fantastic Beasts era; Battle at the Ministry is the headliner</li>
+        <li><strong>SUPER NINTENDO WORLD</strong> — Power-Up Bands unlock interactive experiences throughout; Mine-Cart Madness and Mario Kart are must-dos</li>
+        <li><strong>How to Train Your Dragon – Isle of Berk</strong> — Beautifully themed Viking village with dragon encounters and multiple rides</li>
+        <li><strong>Dark Universe</strong> — Universal Classic Monsters get the immersive treatment; Monsters Unchained: The Frankenstein Experiment is a dual-tracked racing coaster</li>
+      </ul>
+    </div>
+
+    <div style="background:var(--cream);border-left:4px solid #e8a020;border-radius:0 8px 8px 0;padding:20px 28px;margin-top:24px;">
+      <p style="font-size:14px;color:var(--text);"><strong style="color:var(--navy);">⚠️ Important 2025–2026 Note:</strong> Park hopping between Epic Universe and Universal Studios Florida / Islands of Adventure is not currently available. You'll need to dedicate a full separate day to Epic Universe. Universal operates complimentary resort shuttle buses between all four parks and all hotels.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: EXPRESS PASS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon">⚡</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Skip the Lines</div>
+        <h2>Express Pass Explained</h2>
+      </div>
+    </div>
+
+    <p style="font-size:14px;color:var(--text-light);margin-bottom:28px;max-width:760px;">Universal's Express Pass system is different from Disney's Lightning Lane — and in many ways more flexible. There's no booking window, no return times, and no app required. You simply show up to the Express line at any participating ride, any time. Here's how it breaks down.</p>
+
+    <div class="ep-grid">
+      <div class="ep-card ep1">
+        <div class="ep-abbr">Universal Express</div>
+        <h3>Express Pass (1x per ride)</h3>
+        <p>Allows you to use the Express line once per participating attraction at Universal Studios Florida and Islands of Adventure. Similar to Disney's old FastPass+ system. Valid day of purchase only.</p>
+        <div class="ep-price">~$100–$250/person/day</div>
+      </div>
+      <div class="ep-card ep2">
+        <div class="ep-abbr">Express Unlimited</div>
+        <h3>Express Unlimited Pass</h3>
+        <p>Skip the lines as many times as you want at USF and Islands of Adventure — ride VelociCoaster ten times if you want. Your room key acts as your pass if staying at select hotels. Best value on busy days.</p>
+        <div class="ep-price">~$120–$380/person/day · FREE at 3 hotels</div>
+      </div>
+      <div class="ep-card ep3">
+        <div class="ep-abbr">Epic Universe</div>
+        <h3>Epic Universe Express Pass</h3>
+        <p>A separate Express Pass purchase exclusively for Epic Universe. Standard 1x-per-ride format — no unlimited option currently available for Epic Universe. Not included with any hotel stay.</p>
+        <div class="ep-price">Sold separately · check universalorlando.com</div>
+      </div>
+    </div>
+
+    <div class="highlight-box" style="margin-top:32px;">
+      <h3>🏨 The Hotel Express Pass Hack</h3>
+      <p>Guests staying at Loews Portofino Bay Hotel, Hard Rock Hotel, or Loews Royal Pacific Resort receive complimentary Universal Express Unlimited for USF and Islands of Adventure — included for every guest in the room, every day of the stay including check-in and check-out days. On busy days, this perk alone can be worth more than the cost of the hotel room.</p>
+      <ul>
+        <li>Express Unlimited included: Loews Portofino Bay, Hard Rock Hotel, Loews Royal Pacific Resort</li>
+        <li>No Express included: Loews Sapphire Falls, Universal Helios Grand, Cabana Bay, Aventura, Endless Summer</li>
+        <li>All hotels include Early Park Admission (1 hour before general public) — now including Epic Universe</li>
+        <li>Express Unlimited does NOT cover Volcano Bay or Epic Universe — those require separate purchases</li>
+        <li>For a family of 4 on a busy day, Express Unlimited can cost $600+ if purchased separately — do the math on the hotel</li>
+        <li>Ask me to run the numbers for your specific travel dates and party size!</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: WHEN TO GO -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon">📅</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Crowd Calendar</div>
+        <h2>Timing Is Everything</h2>
+      </div>
+    </div>
+
+    <p style="font-size:14px;color:var(--text-light);margin-bottom:28px;max-width:760px;">Universal crowds track closely with school calendars. With four parks now open, the resort is bigger than ever — and Epic Universe in particular draws significant demand. Here's when to go and when to avoid.</p>
+
+    <div class="months-grid">
+      <div class="month-card best">
+        <div class="m-name">January</div>
+        <div class="m-label">🟢 Best</div>
+        <p>Post-holiday quiet. Low crowds and great hotel rates after the first week.</p>
+      </div>
+      <div class="month-card good">
+        <div class="m-name">February</div>
+        <div class="m-label">🔵 Good</div>
+        <p>Mardi Gras season kicks off with concerts and entertainment. Manageable crowds most weeks.</p>
+      </div>
+      <div class="month-card busy">
+        <div class="m-name">March</div>
+        <div class="m-label">🟡 Busy</div>
+        <p>Spring break ramps up. Mardi Gras continues. Avoid mid-month if possible.</p>
+      </div>
+      <div class="month-card avoid">
+        <div class="m-name">April</div>
+        <div class="m-label">🔴 Avoid</div>
+        <p>Spring break peak plus Easter. Some of the highest crowds of the year.</p>
+      </div>
+      <div class="month-card best">
+        <div class="m-name">May</div>
+        <div class="m-label">🟢 Best</div>
+        <p>Early May is a sweet spot before summer. Late May picks up with Memorial Day and school end.</p>
+      </div>
+      <div class="month-card busy">
+        <div class="m-name">June</div>
+        <div class="m-label">🟡 Busy</div>
+        <p>Summer begins. Crowds build across all four parks as school lets out nationwide.</p>
+      </div>
+      <div class="month-card avoid">
+        <div class="m-name">July</div>
+        <div class="m-label">🔴 Avoid</div>
+        <p>Peak summer. 4th of July is one of the busiest times of year across the entire resort.</p>
+      </div>
+      <div class="month-card busy">
+        <div class="m-name">August</div>
+        <div class="m-label">🟡 Busy</div>
+        <p>Still busy but easing late in the month. Heat and humidity are at their peak in Florida.</p>
+      </div>
+      <div class="month-card good">
+        <div class="m-name">September</div>
+        <div class="m-label">🔵 Good</div>
+        <p>Post-Labor Day is excellent. Halloween Horror Nights begins — a must for adult fans.</p>
+      </div>
+      <div class="month-card good">
+        <div class="m-name">October</div>
+        <div class="m-label">🔵 Good</div>
+        <p>Halloween Horror Nights runs select nights. Daytime crowds are manageable on non-HHN nights.</p>
+      </div>
+      <div class="month-card busy">
+        <div class="m-name">November</div>
+        <div class="m-label">🟡 Busy</div>
+        <p>Thanksgiving week is extremely busy. Early November is one of the best times of the whole year.</p>
+      </div>
+      <div class="month-card avoid">
+        <div class="m-name">December</div>
+        <div class="m-label">🔴 Avoid</div>
+        <p>Holidays at Universal are festive and beautiful — but extremely crowded from mid-December through New Year's.</p>
+      </div>
+    </div>
+
+    <div class="feature-grid" style="margin-top:32px;">
+      <div class="feature-card">
+        <div class="f-icon">🎃</div>
+        <h3>Halloween Horror Nights</h3>
+        <p>Universal's flagship special event runs select nights September through early November at Universal Studios Florida. Separately ticketed — world-class haunted houses, scare zones, and live entertainment. One of the best Halloween events anywhere. Sells out frequently; book early.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🎉</div>
+        <h3>Mardi Gras at Universal</h3>
+        <p>Running February through April, Universal's Mardi Gras celebration features nightly concerts from major artists (included with park admission), a Mardi Gras parade with beads, authentic Cajun food, and immersive decorations throughout the park.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🎄</div>
+        <h3>Holidays at Universal</h3>
+        <p>The Wizarding World gets a breathtaking Christmas makeover with Hogsmeade and Diagon Alley transforming for the season. A Christmas Parade, The Magic of Christmas at Hogwarts Castle, and holiday entertainment fill the parks through early January.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: WHERE TO STAY -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon">🏨</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Accommodations</div>
+        <h2>Where to Stay at Universal Orlando</h2>
+      </div>
+    </div>
+
+    <p style="font-size:14px;color:var(--text-light);margin-bottom:8px;max-width:760px;">Universal has eleven on-site hotels split across three tiers. The biggest decision is whether to stay at a Premier Collection hotel (which includes free Express Unlimited at USF and IOA) or save money at a lower tier. All hotels include Early Park Admission to all four parks.</p>
+
+    <!-- PREMIER -->
+    <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);margin:32px 0 16px;">Premier Collection — Includes Free Express Unlimited (USF + IOA)</h3>
+    <div class="resort-grid">
+      <div class="resort-card premier">
+        <h3>Loews Portofino Bay Hotel</h3>
+        <div class="price">From ~$350+/night · Premier</div>
+        <p>Italian Riviera-themed luxury resort — arguably Universal's most beautiful hotel. Three pools, a harbor view, multiple fine dining options, and Mandara Spa. Walking distance to CityWalk.</p>
+        <div class="express-tag">✅ Free Express Unlimited (USF + IOA)</div>
+        <br><div class="examples">Best for: Couples and families who want luxury + maximum value</div>
+      </div>
+      <div class="resort-card premier">
+        <h3>Hard Rock Hotel</h3>
+        <div class="price">From ~$320+/night · Premier</div>
+        <p>The rock star hotel of Universal Orlando. Pool with underwater music system, character meet & greets, and the closest Premier hotel walk to the parks. Always a guest favorite for energy and vibe.</p>
+        <div class="express-tag">✅ Free Express Unlimited (USF + IOA)</div>
+        <br><div class="examples">Best for: Families and music lovers who want the park-closest option</div>
+      </div>
+      <div class="resort-card premier">
+        <h3>Loews Royal Pacific Resort</h3>
+        <div class="price">From ~$280+/night · Premier</div>
+        <p>South Pacific-themed resort with the most affordable rates of the three Express Premier hotels. Lagoon pool, luau entertainment, and the same Express Unlimited benefit as its pricier siblings.</p>
+        <div class="express-tag">✅ Free Express Unlimited (USF + IOA)</div>
+        <br><div class="examples">Best for: Families who want Express perks at the lowest Premier price</div>
+      </div>
+    </div>
+
+    <!-- PREFERRED -->
+    <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);margin:40px 0 8px;">Preferred Collection — Early Park Admission, No Express</h3>
+    <p style="font-size:13px;color:var(--text-light);margin-bottom:16px;">These hotels include Early Park Admission and all standard resort transportation but do not include Express Pass.</p>
+    <div class="resort-grid">
+      <div class="resort-card preferred">
+        <h3>Loews Sapphire Falls Resort</h3>
+        <div class="price">From ~$200+/night · Preferred</div>
+        <p>Caribbean-themed resort with a gorgeous pool and sandy beach area. Awe-inspiring lobby with waterfall feature. Strong food and beverage options. Great value for a resort-quality stay.</p>
+        <div class="no-express-tag">⚡ No Express — purchase separately</div>
+        <br><div class="examples">Best for: Families wanting Caribbean vibes at a moderate price</div>
+      </div>
+      <div class="resort-card preferred">
+        <h3>Universal Helios Grand Hotel</h3>
+        <div class="price">From ~$400+/night · Premier at Epic</div>
+        <p>The brand-new 500-room hotel anchoring Epic Universe with a dedicated park entrance. Mediterranean-inspired with rooftop bar and pool overlooking Epic Universe. Does not include Express Unlimited.</p>
+        <div class="no-express-tag">⚡ No Express Unlimited included</div>
+        <br><div class="examples">Best for: Families making Epic Universe the focus of their trip</div>
+      </div>
+      <div class="resort-card preferred">
+        <h3>Universal Aventura Hotel</h3>
+        <div class="price">From ~$165+/night · Preferred</div>
+        <p>Modern, sleek tower hotel with stunning views of all three original parks from upper-floor rooms. Rooftop bar, clean design, and solid amenities at a mid-range price point.</p>
+        <div class="no-express-tag">⚡ No Express — purchase separately</div>
+        <br><div class="examples">Best for: Adults and families who want stylish, affordable comfort</div>
+      </div>
+    </div>
+
+    <!-- VALUE -->
+    <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);margin:40px 0 8px;">Prime Value Collection — Most Affordable On-Site Options</h3>
+    <div class="resort-grid">
+      <div class="resort-card value">
+        <h3>Universal Cabana Bay Beach Resort</h3>
+        <div class="price">From ~$130+/night · Prime Value</div>
+        <p>1950s/60s Florida beach resort style — retro, fun, and family-friendly with two giant pools and a lazy river. Largest on-site hotel; standard rooms and two-bedroom suites available. Bowling alley on-site.</p>
+        <div class="no-express-tag">⚡ No Express — purchase separately</div>
+        <br><div class="examples">Best for: Budget-conscious families who still want the on-site feel</div>
+      </div>
+      <div class="resort-card value">
+        <h3>Endless Summer Resort – Surfside Inn & Suites</h3>
+        <div class="price">From ~$95+/night · Prime Value</div>
+        <p>Universal's most affordable hotel, with a bright coastal theme and two-bedroom suites at an incredible value. Great pool complex. Requires shuttle to the parks — slightly longer travel time.</p>
+        <div class="no-express-tag">⚡ No Express — purchase separately</div>
+        <br><div class="examples">Best for: Large families or budget travelers needing suite space</div>
+      </div>
+      <div class="resort-card value">
+        <h3>Endless Summer Resort – Dockside Inn & Suites</h3>
+        <div class="price">From ~$95+/night · Prime Value</div>
+        <p>Adjacent to Surfside, same pricing tier, same shuttle transportation. More rooms including family suites that sleep up to six guests. Best on-site bang for the buck in the Universal portfolio.</p>
+        <div class="no-express-tag">⚡ No Express — purchase separately</div>
+        <br><div class="examples">Best for: Large families wanting maximum sleeping space at minimum cost</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: DINING -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon">🍽️</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Food & Dining</div>
+        <h2>Where to Eat at Universal Orlando</h2>
+      </div>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="f-icon">🏆</div>
+        <h3>Signature Restaurants</h3>
+        <p><strong>Mythos Restaurant</strong> (Islands of Adventure) — repeatedly voted one of the best theme park restaurants in the world. <strong>Finnegan's Bar & Grill</strong> (USF) for Irish comfort food. <strong>Emeril's Orlando</strong> and <strong>NBC Sports Grill & Brew</strong> in CityWalk.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🧙</div>
+        <h3>The Wizarding World Dining</h3>
+        <p><strong>Three Broomsticks</strong> in Hogsmeade for Great Feast family dining. <strong>The Leaky Cauldron</strong> in Diagon Alley for pub food. Both serve Butterbeer — the iconic frozen, cold, or hot version. <strong>The Hopping Pot</strong> for quick snacks in Hogsmeade.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🍕</div>
+        <h3>Epic Universe Dining</h3>
+        <p>Each world in Epic Universe has themed restaurants: <strong>Ministry of Magic</strong> has French café-style dining; <strong>Super Nintendo World</strong> features mushroom-themed quick service; <strong>Isle of Berk</strong> has Viking-style feasting halls. All theming is fully immersive.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🌆</div>
+        <h3>Universal CityWalk</h3>
+        <p>The free-admission entertainment district outside the parks is packed with options: <strong>Toothsome Chocolate Emporium</strong> for elaborate milkshakes, <strong>Voodoo Doughnut</strong>, <strong>NBC Sports Grill</strong>, <strong>Hot Dog Hall of Fame</strong>, and more. Open late and no park ticket needed.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🍺</div>
+        <h3>Must-Try Experiences</h3>
+        <p>Butterbeer (Wizarding World) is a non-negotiable. The Jurassic Outpost nachos in IOA are legendary. In Epic Universe, interactive dining experiences are part of the world-building — expect characters and themed performances while you eat.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">📱</div>
+        <h3>Dining Reservations</h3>
+        <p>Mythos and signature hotel restaurants benefit from advance reservations. Most Universal quick-service locations and CityWalk restaurants don't require reservations. Use the Universal Orlando app to check wait times and make reservations where available.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: INCLUDED VS EXTRA -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon">🎟️</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Know Before You Go</div>
+        <h2>What's Included vs. Extra Cost</h2>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="card included">
+        <h3>✅ Included with Admission</h3>
+        <ul class="check-list">
+          <li>Access to all standard rides and attractions in your purchased park(s)</li>
+          <li>All live entertainment — shows, parades, character appearances</li>
+          <li>Mardi Gras parade and concerts (during season)</li>
+          <li>Holiday entertainment and décor overlays</li>
+          <li>Universal CityWalk access (no ticket required)</li>
+          <li>Free standby lines for every attraction</li>
+          <li>TapuTapu wristband at Volcano Bay (virtual queue system)</li>
+          <li>Early Park Admission for all on-site hotel guests (1 hr before opening)</li>
+          <li>Complimentary resort-wide shuttle transportation between all parks and hotels</li>
+          <li>Free walking path access between CityWalk, USF, and Islands of Adventure</li>
+        </ul>
+      </div>
+      <div class="card extra">
+        <h3>+ Costs Extra</h3>
+        <ul class="plus-list">
+          <li>Park-to-Park ticket upgrade (required for Hogwarts Express, multi-park access)</li>
+          <li>Universal Express Pass — standard (~$100–$250/person/day)</li>
+          <li>Universal Express Unlimited (~$120–$380/person/day; free at 3 hotels)</li>
+          <li>Universal Epic Universe Express Pass (sold separately)</li>
+          <li>Volcano Bay Express Passes (separate purchase)</li>
+          <li>Halloween Horror Nights tickets (separately ticketed evening event)</li>
+          <li>Power-Up Bands at Super Nintendo World (~$39.99)</li>
+          <li>Interactive wand experiences in Wizarding World (~$59+)</li>
+          <li>Character dining experiences</li>
+          <li>All food, beverages, and merchandise</li>
+          <li>Parking (~$30–$50/day; free after 6PM)</li>
+          <li>Volcano Bay locker rentals (required for water slides)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: PRO TIPS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon">🎯</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">From The Imagineer Dad</div>
+        <h2>8 Pro Tips for Universal Orlando</h2>
+      </div>
+    </div>
+    <div class="tips-list">
+      <div class="tip">
+        <div class="tip-num">1</div>
+        <p><strong>Do the Express Pass hotel math before you book.</strong> For a family of 4 visiting USF and Islands of Adventure, Express Unlimited can cost more per day than a room at Loews Royal Pacific — which includes it free. Run the numbers, and let me help you find the best deal for your dates.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">2</div>
+        <p><strong>Dedicate a full separate day to Epic Universe.</strong> You cannot park-hop to Epic Universe from the other parks in 2025–2026. Plan it as its own full day — it deserves it. Five worlds with 50+ experiences will fill your entire day.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">3</div>
+        <p><strong>Buy Park-to-Park if you want Hogwarts Express.</strong> The Hogwarts Express running between Hogsmeade (IOA) and Diagon Alley (USF) is one of the best experiences Universal has ever built — but it requires a park-to-park ticket. Don't miss it by buying single-park.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">4</div>
+        <p><strong>Use Early Park Admission aggressively.</strong> All on-site hotel guests get into the parks one hour early. Use that hour to hit Hagrid's Motorbike Adventure, VelociCoaster, or Rise of the Resistance before standby times spike. It's genuinely one of the best perks at any theme park resort.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">5</div>
+        <p><strong>Hagrid's is the crown jewel — and the hardest to ride.</strong> Harry Potter and Hagrid's Magical Creatures Motorbike Adventure at Islands of Adventure is one of the greatest theme park attractions ever built. It doesn't have an Express Pass option — only standby. Go at rope drop or use the virtual line via the app when available.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">6</div>
+        <p><strong>In Epic Universe, get a Power-Up Band for Super Nintendo World.</strong> The interactive experience in Super Nintendo World uses Power-Up Bands (~$39.99) to punch question blocks, collect coins, and battle bosses throughout the land. It's a layer of engagement that makes the area genuinely special — especially for kids.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">7</div>
+        <p><strong>Skip the line with the Universal app.</strong> The Universal Orlando app has virtual lines and wait times for all four parks. Check it throughout the day — lines fluctuate significantly, and mid-afternoon is often the best time to hit popular rides as crowds shift to dining.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">8</div>
+        <p><strong>Build in at least 4 days.</strong> With four parks now open, you need 4–5 days to do Universal Orlando right: at minimum one day each for USF, Islands of Adventure, and Epic Universe, plus a half-day at Volcano Bay. Don't rush it — I can help you build a day-by-day itinerary that makes the most of every hour.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Ready to Go <span>Beyond Your Imagination?</span></h2>
+  <p>Four parks, eleven hotels, and more decisions than you should have to make alone. I'll build you a custom Universal Orlando plan — completely free.</p>
+  <a href="https://form.jotform.com/Jason_Strang/request-a-disney-quote" target="_blank" class="cta-btn">✨ Request Your Free Quote</a>
+  <div class="cta-contact">
+    Questions? Reach me at <a href="mailto:jason@wishuponacastle.com">jason@wishuponacastle.com</a> or <a href="tel:8436089481">843-608-9481</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p>© 2025 The Imagineer Dad · Wish Upon a Castle LLC · An Authorized Disney Vacation Planner · Authorized Universal Retailer · Earmarked Silver Producer</p>
+  <p style="margin-top:8px;"><a href="/">Home</a> &nbsp;·&nbsp; <a href="/guides">Planning Guides</a> &nbsp;·&nbsp; <a href="/cruise">Disney Cruise</a> &nbsp;·&nbsp; <a href="/wdw">Walt Disney World</a> &nbsp;·&nbsp; <a href="/disneyland">Disneyland</a></p>
+</footer>
+
+</body>
+</html>
