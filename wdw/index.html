@@ -40,6 +40,48 @@
   .nav-cta { background: linear-gradient(90deg, var(--gold), var(--gold-light)); color: var(--navy) !important; padding: 8px 20px; border-radius: 30px; font-weight: 700 !important; }
   @media(max-width:600px){ .site-header{padding:0 16px;} .nav-links li:nth-child(1){ display:none; } }
 
+   /* ===== SECTIONS SHARED ===== */
+    .container {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .section-title span {
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-body {
+      font-size: 15px;
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+
   /* HERO */
   .hero {
     background: linear-gradient(135deg, #0a0e28 0%, #1a0c4a 50%, #0c1138 100%);
@@ -440,19 +482,16 @@
     <div class="resort-grid">
       <div class="resort-card value">
         <h3>Value Resorts</h3>
-        <div class="price">$150–$250/night</div>
         <p>Budget-friendly with all the on-property perks. Great for families who plan to spend most of their time in the parks. Pools are fun and themed.</p>
         <div class="examples">Pop Century, All-Star Sports, Art of Animation</div>
       </div>
       <div class="resort-card moderate">
         <h3>Moderate Resorts</h3>
-        <div class="price">$250–$400/night</div>
         <p>Better theming, larger pools, table-service dining, and a more resort-like feel. Great middle ground for families wanting more comfort without the luxury price.</p>
         <div class="examples">Port Orleans, Caribbean Beach, Coronado Springs</div>
       </div>
       <div class="resort-card deluxe">
         <h3>Deluxe Resorts</h3>
-        <div class="price">$400–$1,000+/night</div>
         <p>Monorail or boat access to Magic Kingdom, multiple dining options, stunning theming, and signature amenities. Worth it for honeymooners and special occasions.</p>
         <div class="examples">Grand Floridian, Polynesian, Wilderness Lodge, Beach Club</div>
       </div>
