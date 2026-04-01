@@ -21,7 +21,112 @@
       color: inherit;
       text-decoration: none;
     }
-
+/* Begin popup new */
+    /* QUOTE MODAL */
+    .quote-modal-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(8,9,28,0.82);
+      backdrop-filter: blur(4px);
+      align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .quote-modal-overlay.active { display: flex; }
+    
+    .quote-modal {
+      background: #fff;
+      border-radius: 20px;
+      padding: 44px 40px 40px;
+      max-width: 560px; width: 100%;
+      position: relative;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.45);
+      animation: modalIn 0.22s ease;
+    }
+    @keyframes modalIn {
+      from { opacity:0; transform:translateY(16px) scale(0.97); }
+      to   { opacity:1; transform:translateY(0) scale(1); }
+    }
+    
+    .quote-modal-close {
+      position: absolute; top: 16px; right: 20px;
+      background: none; border: none; cursor: pointer;
+      font-size: 22px; color: #999; line-height: 1;
+      transition: color 0.15s;
+    }
+    .quote-modal-close:hover { color: #333; }
+    
+    .quote-modal-header { text-align: center; margin-bottom: 32px; }
+    .quote-modal-header .modal-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: #9900ff; margin-bottom: 8px;
+    }
+    .quote-modal-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px; font-weight: 900; color: #0c1138; line-height: 1.2;
+    }
+    .quote-modal-header p {
+      font-size: 13px; color: #5a5a72; margin-top: 8px; line-height: 1.6;
+    }
+    
+    .quote-cards {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    @media(max-width: 480px) {
+      .quote-modal { padding: 36px 20px 28px; }
+      .quote-cards { grid-template-columns: 1fr; }
+    }
+    
+    .quote-card {
+      display: block;
+      border-radius: 14px; padding: 24px 20px;
+      text-align: center; text-decoration: none;
+      border: 2px solid transparent;
+      transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+      cursor: pointer;
+    }
+    .quote-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.14);
+    }
+    
+    .quote-card.disney {
+      background: linear-gradient(135deg, #f0f4ff, #e8eeff);
+      border-color: #c0ccff;
+    }
+    .quote-card.disney:hover { border-color: #0c1138; }
+    
+    .quote-card.universal {
+      background: linear-gradient(135deg, #f5f0ff, #ede8ff);
+      border-color: #d8c8ff;
+    }
+    .quote-card.universal:hover { border-color: #9900ff; }
+    
+    .quote-card .qc-icon { font-size: 36px; margin-bottom: 10px; display: block; }
+    
+    .quote-card .qc-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px; font-weight: 900; margin-bottom: 6px;
+    }
+    .quote-card.disney   .qc-title { color: #0c1138; }
+    .quote-card.universal .qc-title { color: #4a0090; }
+    
+    .quote-card .qc-desc {
+      font-size: 11px; color: #5a5a72; line-height: 1.5; margin-bottom: 14px;
+    }
+    
+    .quote-card .qc-btn {
+      display: inline-block;
+      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; padding: 8px 18px; border-radius: 20px;
+    }
+    .quote-card.disney   .qc-btn { background: #0c1138; color: #ffd84d; }
+    .quote-card.universal .qc-btn { background: #9900ff; color: #fff; }
+    
+    .quote-modal-footer {
+      text-align: center; margin-top: 20px;
+      font-size: 11px; color: #aaa;
+    }
+/* end popup new */
     :root {
       --navy: #0c1138;
       --navy-light: #16205a;
@@ -833,10 +938,59 @@
       margin: 16px auto;
     }
   </style>
-</head>
 
 <body>
-
+</head>
+<div class="quote-modal-overlay" id="quoteModal" onclick="closeQuoteModalOutside(event)">
+  <div class="quote-modal">
+    <button class="quote-modal-close" onclick="closeQuoteModal()" aria-label="Close">✕</button>
+ 
+    <div class="quote-modal-header">
+      <div class="modal-eyebrow">Free · No Obligation</div>
+      <h2>What are you planning?</h2>
+      <p>Choose your destination and I'll send you a personalized quote — completely free.</p>
+    </div>
+ 
+    <div class="quote-cards">
+      <a href="https://form.jotform.com/Jason_Strang/request-a-disney-quote"
+         target="_blank" class="quote-card disney" onclick="closeQuoteModal()">
+        <span class="qc-icon">🏰</span>
+        <div class="qc-title">Disney Vacation</div>
+        <div class="qc-desc">Walt Disney World, Disneyland, Disney Cruise Line, Adventures by Disney</div>
+        <span class="qc-btn">Get Disney Quote →</span>
+      </a>
+ 
+      <a href="https://form.jotform.com/Jason_Strang/request-a-universal-quote"
+         target="_blank" class="quote-card universal" onclick="closeQuoteModal()">
+        <span class="qc-icon">🎬</span>
+        <div class="qc-title">Universal Vacation</div>
+        <div class="qc-desc">Universal Orlando, Universal Studios Hollywood, Epic Universe</div>
+        <span class="qc-btn">Get Universal Quote →</span>
+      </a>
+    </div>
+ 
+    <div class="quote-modal-footer">
+      My planning services are always 100% free to you ✨
+    </div>
+  </div>
+</div>
+ 
+<script>
+function openQuoteModal() {
+  document.getElementById('quoteModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeQuoteModal() {
+  document.getElementById('quoteModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+function closeQuoteModalOutside(e) {
+  if (e.target === document.getElementById('quoteModal')) closeQuoteModal();
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeQuoteModal();
+});
+</script>
   <!-- NAV -->
   <!-- <nav class="nav">
     <div class="nav-logo">
@@ -851,8 +1005,7 @@
        <li><a href="#about">About</a></li>
       <li><a href="#destinations">Destinations</a></li>
       <li><a href="/guides" target="_blank">Planning Guides</a></li>
-      <li><a href="https://form.jotform.com/Jason_Strang/request-a-disney-quote" target="_blank" class="cta">Request a
-          Quote</a></li>
+      <li><a href="#" onclick="openQuoteModal(); return false;" class="cta">Request a Quote</a></li>
     </ul>
   </nav>
 
@@ -870,8 +1023,7 @@
       <p class="tagline">Stress-free, magical vacations for families — planned by a dad who lives and breathes Disney.
       </p>
       <div class="hero-btns">
-        <a href="https://form.jotform.com/Jason_Strang/request-a-disney-quote" target="_blank"
-          class="btn-primary">Request a Free Quote</a>
+        <a href="#" onclick="openQuoteModal(); return false;"class="btn-primary">Request a Free Quote</a>
         <a href="#about" class="btn-ghost">Meet Jason</a>
       </div>
     </div>
@@ -1160,8 +1312,7 @@
           <h4>Ready to Start Planning?</h4>
           <p>Fill out a quick quote request and I'll reach out within 24 hours to start building your dream vacation —
             completely free.</p>
-          <a href="https://form.jotform.com/Jason_Strang/request-a-disney-quote" target="_blank"
-            class="btn-full">Request a Free Quote</a>
+          <a href="#" onclick="openQuoteModal(); return false;" class="btn-primary">Request a Free Quote</a></div>
           <a href="mailto:jason@wishuponacastle.com" class="btn-full-ghost">Send Me an Email</a>
         </div>
       </div>
