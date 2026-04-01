@@ -110,13 +110,10 @@
     .quote-card.disney   .qc-title { color: #0c1138; }
     .quote-card.universal .qc-title { color: #0c1138; }
     
-    .quote-card.universal .qc-desc {
-      font-size: 11px; color: #5a5a72; line-height: 1.5; margin-bottom: 26px;
-    }
-     .quote-card.disney .qc-desc {
+    .quote-card .qc-desc {
       font-size: 11px; color: #5a5a72; line-height: 1.5; margin-bottom: 15px;
     }
-    
+
     .quote-card .qc-btn {
       display: inline-block;
       font-size: 10px; font-weight: 700; letter-spacing: 2px;
@@ -124,7 +121,7 @@
     }
     .quote-card.disney   .qc-btn { background: #9900ff; color: #ffd84d; 
     padding: 15px;}
-    .quote-card.universal .qc-btn { background: #9900ff; color: #ffd84d; }
+    .quote-card.universal .qc-btn { background: #9900ff; color: #ffd84d;}
     
     .quote-modal-footer {
       text-align: center; margin-top: 20px;
@@ -968,7 +965,7 @@
          target="_blank" class="quote-card universal" onclick="closeQuoteModal()">
         <span class="qc-icon">🎬</span>
         <div class="qc-title">Universal Vacation</div>
-        <div class="qc-desc">Universal Orlando, Universal Studios Hollywood, Epic Universe</div>
+        <div class="qc-desc">Universal Orlando, Universal Studios Hollywood, Epic Universe, Volcano Bay</div>
         <span class="qc-btn">Get Universal Quote →</span>
       </a>
     </div>
@@ -994,6 +991,7 @@ function closeQuoteModalOutside(e) {
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeQuoteModal();
 });
+
 </script>
   <!-- NAV -->
   <!-- <nav class="nav">
@@ -1008,7 +1006,7 @@ document.addEventListener('keydown', function(e) {
       <li><a href="https://theimagineerdad.com">Home</a></li>
        <li><a href="#about">About</a></li>
       <li><a href="#destinations">Destinations</a></li>
-      <li><a href="/guides" target="_blank">Planning Guides</a></li>
+      <li><a href="/guides">Planning Guides</a></li>
       <li><a href="#" onclick="openQuoteModal(); return false;" class="cta">Request a Quote</a></li>
     </ul>
   </nav>
