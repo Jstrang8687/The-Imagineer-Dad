@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Universal Studios Hollywood Guide | The Imagineer Dad</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  a { color: inherit; text-decoration: none; }
+
+  :root {
+    --navy: #0c1138;
+    --gold: #e8a020;
+    --gold-light: #ffd84d;
+    --purple: #9900ff;
+    --purple-light: #bb44ff;
+    --purple-dark: #6600bb;
+    --cream: #f8f4ee;
+    --text: #2a2a3a;
+    --text-light: #5a5a72;
+    --white: #ffffff;
+    --uni-blue: #0057a8;
+    --uni-blue-dark: #003d7a;
+  }
+
+  body { font-family: 'Montserrat', sans-serif; color: var(--text); background: var(--white); line-height: 1.7; }
+
+  .site-header {
+    background: var(--navy); padding: 0 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px; position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  }
+  .site-logo { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 20px; color: var(--gold-light); }
+  .site-logo span { color: white; font-weight: 400; font-style: italic; font-size: 14px; letter-spacing: 3px; display: block; }
+  .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+  .nav-links a { color: rgba(255,255,255,0.75); font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--purple-light); }
+  .nav-cta { background: linear-gradient(90deg, var(--gold), var(--gold-light)); color: var(--navy) !important; padding: 8px 20px; border-radius: 30px; font-weight: 700 !important; }
+  @media(max-width:600px){ .site-header{padding:0 16px;} .nav-links li:nth-child(1){ display:none; } }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #060d28 0%, #001845 50%, #002a6e 100%);
+    color: white; padding: 80px 40px; text-align: center; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0,87,168,0.2) 0%, transparent 70%);
+  }
+  .hero-badge { display:inline-block; border:1px solid rgba(0,140,255,0.5); color:#66bbff; font-size:11px; font-weight:700; letter-spacing:4px; text-transform:uppercase; padding:6px 18px; border-radius:30px; margin-bottom:20px; position:relative; }
+  .hero h1 { font-family:'Playfair Display',serif; font-size:clamp(32px,5vw,58px); font-weight:900; line-height:1.1; margin-bottom:16px; position:relative; }
+  .hero h1 span { background:linear-gradient(90deg,#ffd84d,#fff5a0,#ffaa30); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .hero p { font-size:17px; color:rgba(255,255,255,0.75); max-width:640px; margin:0 auto 32px; font-weight:300; position:relative; }
+  .hero-cta { display:inline-block; background:linear-gradient(90deg,#ffd84d,#ffaa30); color:var(--navy); font-weight:700; font-size:12px; letter-spacing:2px; text-transform:uppercase; padding:14px 36px; border-radius:40px; box-shadow:0 4px 20px rgba(255,180,30,0.35); }
+
+  .container { max-width:1040px; margin:0 auto; padding:0 24px; }
+  .section { padding:64px 0; border-bottom:1px solid #eee; }
+  .section:last-of-type { border-bottom:none; }
+
+  .section-header { display:flex; align-items:center; gap:16px; margin-bottom:32px; }
+  .section-icon { width:52px; height:52px; background:linear-gradient(135deg,var(--uni-blue-dark),var(--uni-blue)); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0; }
+  .section-title-wrap .subtitle { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--uni-blue); margin-bottom:4px; }
+  .section-title-wrap h2 { font-family:'Playfair Display',serif; font-size:28px; font-weight:900; color:var(--navy); line-height:1.2; }
+
+  .intro-banner { background:var(--cream); border-left:4px solid var(--uni-blue); padding:28px 40px; max-width:900px; margin:56px auto; border-radius:0 8px 8px 0; }
+  .intro-banner p { font-size:16px; color:var(--text); line-height:1.8; }
+
+  /* LOT CARDS */
+  .lots-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  @media(max-width:700px){ .lots-grid { grid-template-columns:1fr; } }
+  .lot-card { border-radius:14px; overflow:hidden; border:1px solid #e8e4f0; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+  .lot-card-header { padding:20px 24px; color:white; }
+  .lot-card-header.upper { background:linear-gradient(135deg,#003d7a,#0057a8); }
+  .lot-card-header.lower { background:linear-gradient(135deg,#4a0080,#7700cc); }
+  .lot-card-header h3 { font-family:'Playfair Display',serif; font-size:20px; font-weight:900; margin-bottom:4px; }
+  .lot-card-header .lot-tag { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; opacity:0.75; }
+  .lot-card-body { padding:20px 24px; background:white; }
+  .lot-card-body p { font-size:13px; color:var(--text-light); line-height:1.65; margin-bottom:14px; }
+  .must-rides { list-style:none; display:flex; flex-direction:column; gap:6px; }
+  .must-rides li { font-size:12px; font-weight:600; color:var(--text); display:flex; gap:8px; align-items:center; }
+  .must-rides li::before { content:'🎢'; font-size:12px; }
+  .must-rides li.show::before  { content:'🎭'; }
+  .must-rides li.char::before  { content:'✨'; }
+  .must-rides li.food::before  { content:'🍽️'; }
+  .must-rides li.tour::before  { content:'🎬'; }
+  .must-rides li.coming::before { content:'🚧'; }
+
+  .feature-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; }
+  .feature-card { background:var(--cream); border-radius:12px; padding:24px; border:1px solid #e0dbd0; }
+  .feature-card .f-icon { font-size:28px; margin-bottom:10px; }
+  .feature-card h3 { font-size:15px; font-weight:700; color:var(--navy); margin-bottom:8px; }
+  .feature-card p { font-size:13px; color:var(--text-light); line-height:1.65; }
+
+  /* EXPRESS PASS CARDS */
+  .ep-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+  @media(max-width:700px){ .ep-grid { grid-template-columns:1fr; } }
+  .ep-card { border-radius:12px; padding:22px; color:white; }
+  .ep-card.ep1 { background:linear-gradient(135deg,var(--uni-blue-dark),var(--uni-blue)); }
+  .ep-card.ep2 { background:linear-gradient(135deg,#5a0090,#8800cc); }
+  .ep-card.ep3 { background:linear-gradient(135deg,#8a6000,#c49000); }
+  .ep-card h3 { font-size:14px; font-weight:700; margin-bottom:6px; }
+  .ep-card .ep-abbr { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; opacity:0.7; margin-bottom:10px; }
+  .ep-card p { font-size:12px; opacity:0.85; line-height:1.6; }
+  .ep-card .ep-price { margin-top:10px; font-size:13px; font-weight:700; }
+
+  .months-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+  @media(max-width:700px){ .months-grid { grid-template-columns:repeat(2,1fr); } }
+  .month-card { border-radius:10px; padding:16px; text-align:center; border:1px solid #e8e4f0; }
+  .month-card.best  { border-color:#28a060; background:#f0fff8; }
+  .month-card.good  { border-color:#4a8ae8; background:#f0f4ff; }
+  .month-card.busy  { border-color:#e8a020; background:#fffaf0; }
+  .month-card.avoid { border-color:#c04040; background:#fff0f0; }
+  .month-card .m-name  { font-size:13px; font-weight:700; color:var(--navy); margin-bottom:4px; }
+  .month-card .m-label { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; }
+  .month-card.best  .m-label { color:#1a7a46; }
+  .month-card.good  .m-label { color:#2a5ac8; }
+  .month-card.busy  .m-label { color:#b87000; }
+  .month-card.avoid .m-label { color:#a03030; }
+  .month-card p { font-size:11px; color:var(--text-light); margin-top:6px; line-height:1.4; }
+
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  @media(max-width:700px){ .two-col { grid-template-columns:1fr; } }
+  .card { background:var(--white); border:1px solid #e8e4f0; border-radius:12px; padding:28px; box-shadow:0 2px 12px rgba(0,0,0,0.05); }
+  .card.included { border-top:3px solid #28a060; }
+  .card.extra    { border-top:3px solid var(--uni-blue); }
+  .card h3 { font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; }
+  .card.included h3 { color:#1a7a46; }
+  .card.extra    h3 { color:var(--uni-blue-dark); }
+  .check-list { list-style:none; display:flex; flex-direction:column; gap:9px; }
+  .check-list li { display:flex; gap:10px; align-items:flex-start; font-size:13px; line-height:1.5; }
+  .check-list li::before { content:'✓'; color:#28a060; font-weight:800; flex-shrink:0; margin-top:1px; }
+  .plus-list { list-style:none; display:flex; flex-direction:column; gap:9px; }
+  .plus-list li { display:flex; gap:10px; align-items:flex-start; font-size:13px; line-height:1.5; }
+  .plus-list li::before { content:'+'; color:var(--uni-blue); font-weight:800; flex-shrink:0; margin-top:1px; }
+
+  .highlight-box { background:linear-gradient(135deg,var(--uni-blue-dark) 0%,var(--uni-blue) 100%); color:white; border-radius:16px; padding:36px 40px; margin:40px 0; }
+  .highlight-box h3 { font-family:'Playfair Display',serif; font-size:22px; font-weight:900; color:white; margin-bottom:12px; }
+  .highlight-box p { font-size:14px; color:rgba(255,255,255,0.85); line-height:1.7; }
+  .highlight-box ul { list-style:none; margin-top:16px; display:grid; grid-template-columns:1fr 1fr; gap:8px 24px; }
+  @media(max-width:600px){ .highlight-box ul { grid-template-columns:1fr; } }
+  .highlight-box ul li { font-size:13px; color:rgba(255,255,255,0.85); display:flex; gap:8px; }
+  .highlight-box ul li::before { content:'⭐'; font-size:11px; margin-top:3px; }
+
+  .tips-list { display:flex; flex-direction:column; gap:14px; }
+  .tip { display:flex; gap:16px; align-items:flex-start; background:var(--cream); border-radius:10px; padding:16px 20px; border-left:3px solid var(--uni-blue); }
+  .tip-num { background:linear-gradient(135deg,var(--uni-blue-dark),var(--uni-blue)); color:white; font-weight:900; font-size:13px; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; }
+  .tip p { font-size:14px; line-height:1.6; color:var(--text); }
+  .tip strong { color:var(--navy); }
+
+  /* vs Orlando comparison */
+  .compare-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  @media(max-width:700px){ .compare-grid { grid-template-columns:1fr; } }
+  .compare-card { border-radius:12px; padding:24px; border:1px solid #e8e4f0; }
+  .compare-card.hollywood { border-top:3px solid var(--uni-blue); }
+  .compare-card.orlando   { border-top:3px solid var(--purple); }
+  .compare-card h3 { font-size:14px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:14px; }
+  .compare-card.hollywood h3 { color:var(--uni-blue-dark); }
+  .compare-card.orlando   h3 { color:var(--purple-dark); }
+  .compare-list { list-style:none; display:flex; flex-direction:column; gap:8px; }
+  .compare-list li { font-size:13px; color:var(--text); display:flex; gap:8px; align-items:flex-start; line-height:1.5; }
+  .compare-list li::before { content:'→'; color:var(--text-light); font-size:11px; margin-top:3px; flex-shrink:0; }
+
+  .cta-section { background:linear-gradient(135deg,#060d28 0%,#001845 50%,#002a6e 100%); color:white; text-align:center; padding:80px 40px; }
+  .cta-section h2 { font-family:'Playfair Display',serif; font-size:clamp(28px,4vw,44px); font-weight:900; margin-bottom:16px; }
+  .cta-section h2 span { background:linear-gradient(90deg,#66bbff,#aaddff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .cta-section p { color:rgba(255,255,255,0.72); font-size:15px; max-width:560px; margin:0 auto 32px; font-weight:300; }
+  .cta-btn { display:inline-block; background:linear-gradient(90deg,#ffd84d,#ffaa30); color:var(--navy); font-weight:700; font-size:12px; letter-spacing:2px; text-transform:uppercase; padding:16px 40px; border-radius:40px; box-shadow:0 6px 24px rgba(255,180,30,0.4); }
+  .cta-contact { margin-top:24px; font-size:13px; color:rgba(255,255,255,0.5); }
+  .cta-contact a { color:var(--gold-light); }
+
+  .site-footer { background:#08091c; color:rgba(255,255,255,0.4); text-align:center; padding:28px 24px; font-size:11px; letter-spacing:1px; }
+  .site-footer a { color:var(--gold-light); opacity:0.6; }
+
+  @media(max-width:480px){
+    .hero { padding:50px 20px; }
+    .section { padding:44px 0; }
+    .container { padding:0 16px; }
+    .section-title-wrap h2 { font-size:22px; }
+    .intro-banner { padding:20px 24px; margin:36px auto; }
+    .highlight-box { padding:24px 20px; }
+    .cta-section { padding:56px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="site-header">
+  <a href="https://www.theimagineerdad.com" class="site-logo">
+    <span>The</span>IMAGINEER DAD
+  </a>
+  <ul class="nav-links">
+    <li><a href="https://www.theimagineerdad.com">Home</a></li>
+    <li><a href="/guides">Planning Guides</a></li>
+    <li><a href="https://form.jotform.com/Jason_Strang/request-a-universal-quote" target="_blank" class="nav-cta">Request a Quote</a></li>
+  </ul>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Planning Guide</div>
+  <h1>Your Complete Guide to<br><span>Universal Studios Hollywood</span></h1>
+  <p>The only authentic working movie studio theme park in the world. Here's everything your family needs to know before you visit — from a dad who's done the homework.</p>
+  <a href="https://form.jotform.com/Jason_Strang/request-a-universal-quote" target="_blank" class="hero-cta">✨ Plan My Hollywood Trip</a>
+</section>
+
+<!-- INTRO BANNER -->
+<div class="intro-banner">
+  <p>Universal Studios Hollywood sits in the hills above Los Angeles and is genuinely unlike any other theme park in the world. It's a real, working film and TV studio where major productions are filmed every week — and you get to tour it. Add The Wizarding World of Harry Potter, Super Nintendo World, thrilling rides, and the legendary WaterWorld stunt show, and you have a full day — or two — of world-class entertainment in the heart of Southern California.</p>
+</div>
+
+<!-- SECTION 1: THE PARK LAYOUT -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon">🎬</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Know the Layout</div>
+        <h2>Upper Lot & Lower Lot</h2>
+      </div>
+    </div>
+
+    <p style="font-size:14px;color:var(--text-light);margin-bottom:24px;max-width:760px;">Unlike most theme parks, Universal Studios Hollywood is built on a hillside — and that shapes everything about how you experience it. The park is split into two levels connected by a series of escalators and an elevator. Understanding this layout is key to planning your day efficiently.</p>
+
+    <div class="lots-grid">
+      <div class="lot-card">
+        <div class="lot-card-header upper">
+          <div class="lot-tag">Park Entrance Level</div>
+          <h3>Upper Lot</h3>
+        </div>
+        <div class="lot-card-body">
+          <p>The largest section of the park — where you enter and where most of the themed lands and immersive experiences live. This is where you'll spend the majority of your day.</p>
+          <ul class="must-rides">
+            <li class="tour">The World-Famous Studio Tour (60 min) — #1 must-do</li>
+            <li>Harry Potter and the Forbidden Journey (Wizarding World)</li>
+            <li>Flight of the Hippogriff (Wizarding World — great starter coaster)</li>
+            <li>Mario Kart: Bowser's Challenge (Super Nintendo World)</li>
+            <li class="char">Super Nintendo World — Power-Up Band challenges</li>
+            <li>Despicable Me: Minion Mayhem</li>
+            <li>The Simpsons Ride</li>
+            <li class="show">WaterWorld: A Live Sea War Spectacular</li>
+            <li class="show">Nighttime Lights at Hogwarts Castle (seasonal)</li>
+            <li class="food">Three Broomsticks (Wizarding World)</li>
+            <li class="food">Toadstool Café (Super Nintendo World — reservations required)</li>
+            <li class="food">Springfield — Krusty Burger, Moe's Tavern, Duff's Brewery</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="lot-card">
+        <div class="lot-card-header lower">
+          <div class="lot-tag">Lower Level · Escalators Down</div>
+          <h3>Lower Lot</h3>
+        </div>
+        <div class="lot-card-body">
+          <p>Smaller in footprint but packed with the park's most intense thrill rides. It takes several minutes to reach via escalator — plan to spend time here and ride multiple times before heading back up rather than going up and down repeatedly.</p>
+          <ul class="must-rides">
+            <li>Jurassic World — The Ride (big splash drop — you will get wet)</li>
+            <li>Revenge of the Mummy — The Ride (indoor coaster, launches backwards)</li>
+            <li>TRANSFORMERS: The Ride-3D</li>
+            <li>Secrets of the Forbidden Journey (Lower Lot entrance to queue)</li>
+            <li class="coming">Fast & Furious: Hollywood Drift — Coming 2026 (high-speed outdoor coaster)</li>
+          </ul>
+          <p style="margin-top:14px;font-size:12px;color:var(--text-light);"><strong style="color:var(--navy);">Pro tip:</strong> Head to the Lower Lot first thing in the morning before crowds build. The escalator journey means most guests delay it — use that to your advantage.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <h3>🎬 The World-Famous Studio Tour — The Crown Jewel</h3>
+      <p>No other theme park on earth can offer what this 60-minute tram tour delivers. You ride through the actual working backlot of Universal Studios — one of the most famous film lots in history — with live narration and spectacular special effects sequences along the way.</p>
+      <ul>
+        <li>See iconic film sets including the Bates Motel from Psycho, Wisteria Lane, the War of the Worlds crash site</li>
+        <li>Experience King Kong 360 — a massive, immersive 3D encounter</li>
+        <li>The Jaws lagoon, the courthouse from Back to the Future, the Old West set</li>
+        <li>Fast & Furious — Supercharged is a full motion simulator experience mid-tour</li>
+        <li>Actual productions film here weekly — you may spot a celebrity or active set</li>
+        <li>Express Pass now includes priority boarding for the Studio Tour</li>
+        <li>VIP Experience adds a separate, deeper backlot exploration on foot (exclusive to VIP guests)</li>
+        <li>The tour runs all day — go at whatever time fits your schedule, but mornings mean shorter waits</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: EXPRESS PASS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon">⚡</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Skip the Lines</div>
+        <h2>Express Pass & VIP Experience</h2>
+      </div>
+    </div>
+
+    <p style="font-size:14px;color:var(--text-light);margin-bottom:28px;max-width:760px;">Universal Studios Hollywood does not have on-site hotels that include Express Pass like Universal Orlando does. You'll purchase it separately — but the good news is that Hollywood has far fewer Express users than Orlando, meaning the Express lane moves very quickly.</p>
+
+    <div class="ep-grid">
+      <div class="ep-card ep1">
+        <div class="ep-abbr">Express Pass</div>
+        <h3>Universal Express Pass</h3>
+        <p>Skip the standby line once per participating attraction. No return times or booking windows needed — just show up at the Express entrance any time. Covers all rides plus the WaterWorld show. Mario Kart now included.</p>
+      </div>
+      <div class="ep-card ep2">
+        <div class="ep-abbr">Express Unlimited</div>
+        <h3>Express Unlimited</h3>
+        <p>Same as Express Pass but with unlimited re-rides on every attraction. Ride your favorites as many times as you want all day long. Worth the upgrade on busy summer or holiday days.</p>
+      </div>
+      <div class="ep-card ep3">
+        <div class="ep-abbr">VIP Experience</div>
+        <h3>VIP Tour Experience</h3>
+        <p>The ultimate Hollywood day. A private guide escorts you through express lines, plus you get exclusive behind-the-scenes backlot access on foot — areas not open to the public. Includes breakfast, lunch, and valet parking.</p>
+      </div>
+    </div>
+
+    <div style="background:var(--cream);border-left:4px solid var(--uni-blue);border-radius:0 8px 8px 0;padding:20px 28px;margin-top:28px;">
+      <p style="font-size:14px;color:var(--text);"><strong style="color:var(--navy);">Is Express Pass worth it at Hollywood?</strong> On a weekday in the off-season, you can likely ride everything in one day without it. On a summer weekend or during a special event, it can save 3–5 hours of waiting. Hollywood sells limited daily Express quantities — it's also worth considering that Single Rider lines at Jurassic World, Revenge of the Mummy, Transformers, Forbidden Journey, Flight of the Hippogriff, and Mario Kart are often under 10 minutes and are completely free. Ask me about the best strategy for your specific dates.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: WHEN TO GO -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon">📅</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Crowd Calendar</div>
+        <h2>Timing Is Everything</h2>
+      </div>
+    </div>
+
+    <p style="font-size:14px;color:var(--text-light);margin-bottom:28px;max-width:760px;">Universal Studios Hollywood is a one-park destination and is far easier to manage in a single day than Universal Orlando. The best weekday in September can get you on every major ride in under six hours. The worst summer weekend is a completely different story.</p>
+
+    <div class="months-grid">
+      <div class="month-card best">
+        <div class="m-name">January</div>
+        <div class="m-label">🟢 Best</div>
+        <p>Post-holiday calm. Shortest lines of the year, lowest ticket prices, cool comfortable weather.</p>
+      </div>
+      <div class="month-card best">
+        <div class="m-name">February</div>
+        <div class="m-label">🟢 Best</div>
+        <p>Still very quiet. Weekdays in February are among the least crowded days of the entire year.</p>
+      </div>
+      <div class="month-card busy">
+        <div class="m-name">March</div>
+        <div class="m-label">🟡 Busy</div>
+        <p>Spring break begins mid-month. Watch out for SoCal school breaks and Presidents' Week.</p>
+      </div>
+      <div class="month-card avoid">
+        <div class="m-name">April</div>
+        <div class="m-label">🔴 Avoid</div>
+        <p>Spring break peak. Easter week is one of the busiest periods of the year.</p>
+      </div>
+      <div class="month-card good">
+        <div class="m-name">May</div>
+        <div class="m-label">🔵 Good</div>
+        <p>Quieter once spring break ends. Late May picks up with Memorial Day weekend.</p>
+      </div>
+      <div class="month-card busy">
+        <div class="m-name">June</div>
+        <div class="m-label">🟡 Busy</div>
+        <p>Summer begins. Crowds build steadily as schools across the country let out.</p>
+      </div>
+      <div class="month-card avoid">
+        <div class="m-name">July</div>
+        <div class="m-label">🔴 Avoid</div>
+        <p>Peak summer. 4th of July week is the single busiest stretch of the year. Express Pass strongly recommended.</p>
+      </div>
+      <div class="month-card avoid">
+        <div class="m-name">August</div>
+        <div class="m-label">🔴 Avoid</div>
+        <p>Still extremely busy. SoCal heat is at its peak. Late August slowly eases as schools return.</p>
+      </div>
+      <div class="month-card best">
+        <div class="m-name">September</div>
+        <div class="m-label">🟢 Best</div>
+        <p>The hidden gem of the year. Weekdays in September are the absolute sweet spot — short lines and great weather. Halloween Horror Nights begins.</p>
+      </div>
+      <div class="month-card good">
+        <div class="m-name">October</div>
+        <div class="m-label">🔵 Good</div>
+        <p>Weekdays are manageable. Halloween Horror Nights runs select nights — a must-do for adult fans. Weekends get busier.</p>
+      </div>
+      <div class="month-card best">
+        <div class="m-name">November</div>
+        <div class="m-label">🟢 Best</div>
+        <p>Excellent outside of Thanksgiving week. Early November is one of the best times of the year alongside September.</p>
+      </div>
+      <div class="month-card avoid">
+        <div class="m-name">December</div>
+        <div class="m-label">🔴 Avoid</div>
+        <p>Holiday decorations are magical, but Christmas week through New Year's is extremely crowded. Grinchmas and holiday Hogwarts lighting are worth it if you go early.</p>
+      </div>
+    </div>
+
+    <div class="feature-grid" style="margin-top:32px;">
+      <div class="feature-card">
+        <div class="f-icon">🎃</div>
+        <h3>Halloween Horror Nights</h3>
+        <p>Running select nights September through November, this separately-ticketed after-dark event transforms Universal Studios Hollywood with world-class haunted houses, scare zones, and live entertainment. From the studio that invented the horror film genre — this is the real deal. Tickets sell out. Book early.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🎄</div>
+        <h3>Grinchmas & Holiday Events</h3>
+        <p>The Wizarding World transforms for the holidays, and Grinchmas brings Whoville to life with the Grinch and seasonal shows. The Nighttime Lights at Hogwarts Castle show runs during the holiday season. One of the most visually stunning times to visit — just avoid the week between Christmas and New Year's.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🎬</div>
+        <h3>Universal Fan Fest Nights</h3>
+        <p>A newer seasonal event launched in 2025, Fan Fest Nights celebrates beloved Universal films and franchises with themed experiences, character appearances, and special entertainment. Check the official Universal Studios Hollywood calendar for dates, as this event is still growing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: LANDS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon">🌍</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Immersive Worlds</div>
+        <h2>The Themed Lands</h2>
+      </div>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="f-icon">🧙</div>
+        <h3>The Wizarding World of Harry Potter</h3>
+        <p>Hogsmeade comes to life in stunning detail — Hogwarts Castle looms above the land, and Three Broomsticks serves Butterbeer and Pumpkin Juice. The marquee ride is Harry Potter and the Forbidden Journey inside the castle. Flight of the Hippogriff is the outdoor coaster with castle views. Interactive wands let you cast spells at hidden targets throughout the village.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🍄</div>
+        <h3>Super Nintendo World</h3>
+        <p>Step through a warp pipe into the Mushroom Kingdom. Power-Up Bands (~$39.99) let you punch question blocks, collect coins, and battle bosses in the land's interactive challenges. The marquee ride is Mario Kart: Bowser's Challenge — a mixed-reality racing experience. Toadstool Café requires a reservation (book up to 60 days in advance). Characters like Mario, Luigi, and Princess Peach meet guests throughout.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">😈</div>
+        <h3>Minion Land & Springfield</h3>
+        <p>Minion Land is anchored by Despicable Me: Minion Mayhem — a family-friendly motion simulator. Springfield brings the Simpsons world to life with Krusty Burger, Moe's Tavern serving real drinks, Duff's Brewery, and The Simpsons Ride through Krustyland. Both areas are excellent for families and Simpsons fans.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🦕</div>
+        <h3>Jurassic World (Lower Lot)</h3>
+        <p>The iconic water ride with a massive drop finale — you will get wet in the front rows. The queue itself is themed beautifully through the Jurassic World facility. Arrive when the park opens or at the end of the day when the line is shortest. Single Rider line available.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🏍️</div>
+        <h3>Revenge of the Mummy (Lower Lot)</h3>
+        <p>One of the best indoor dark coasters at any theme park. Launches forward and backwards in the dark with fire effects and unexpected jolts. Not overly intense but genuinely thrilling — the backwards launch surprises everyone. Short in duration but massive in fun. Single Rider line available.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🚗</div>
+        <h3>Fast & Furious: Hollywood Drift — Coming 2026</h3>
+        <p>Universal Studios Hollywood's first-ever outdoor high-speed roller coaster, themed to the Fast & Furious franchise. Guests enter a garage-style building in the Upper Lot before launching onto an aerial track that winds over parts of the park. Opening in 2026 — this will be the park's biggest new addition in years.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: DINING -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon">🍽️</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Food & Dining</div>
+        <h2>Where to Eat at Universal Hollywood</h2>
+      </div>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="f-icon">🏆</div>
+        <h3>Must-Reserve: Toadstool Café</h3>
+        <p>Super Nintendo World's fully themed restaurant requires a reservation (up to 60 days in advance via the Universal app or website). Mushroom-themed dishes, Power-Up drinks, and full Mushroom Kingdom atmosphere. If you want to eat here, book your reservation the same day you buy tickets. Walk-ups are rare.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🧙</div>
+        <h3>Wizarding World Dining</h3>
+        <p>Three Broomsticks serves Great Feast platters, fish & chips, and Butterbeer. The Hog's Head pub pours butterbeer on tap. Butterbeer is available frozen, cold, or hot — frozen is the fan favorite. Hogsmeade also has Honeydukes for sweets and Dervish & Banges for merchandise.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">📺</div>
+        <h3>Springfield Eats</h3>
+        <p>Krusty Burger for burgers and The Frying Dutchman for seafood. Moe's Tavern serves real alcohol alongside Flaming Moe's soda. Lard Lad Donuts for a giant pink sprinkle donut — a Springfield essential. Duff's Brewery for a cold one after the Simpsons Ride.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🌆</div>
+        <h3>Universal CityWalk Hollywood</h3>
+        <p>The free-admission entertainment and dining district outside the park gates. Bubba Gump Shrimp Co., Voodoo Doughnut, Margaritaville, and Toothsome Chocolate Emporium are popular stops. No park ticket needed — great for dinner after your park day or if you're making a shopping trip separate from your visit.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">☕</div>
+        <h3>VIP Dining Perk</h3>
+        <p>VIP Experience guests receive breakfast and a full sit-down lunch in the exclusive VIP Lounge — included in the tour price. It's an elevated dining experience away from the park crowds, and the lounge has a great view of the studio lot. One of the most underrated parts of the VIP day.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🥤</div>
+        <h3>Souvenir Cup Strategy</h3>
+        <p>Universal Hollywood offers a souvenir cup for around $19 (two for $17 each) with free refills every 10 minutes all day. If you're a big soda drinker, the math works quickly in your favor. Pick one up at the start of your day and stay hydrated — especially important during the hot Southern California summer months.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: INCLUDED VS EXTRA -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon">🎟️</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Know Before You Go</div>
+        <h2>What's Included vs. Extra Cost</h2>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="card included">
+        <h3>✅ Included with Admission</h3>
+        <ul class="check-list">
+          <li>All rides and attractions — Upper and Lower Lot</li>
+          <li>The World-Famous Studio Tour (60 min)</li>
+          <li>WaterWorld: A Live Sea War Spectacular</li>
+          <li>All live shows and character appearances</li>
+          <li>Super Nintendo World land access and interactive challenges (Power-Up Band required for full experience)</li>
+          <li>Wizarding World of Harry Potter land access and wand spell locations (wand sold separately)</li>
+          <li>Nighttime Lights at Hogwarts Castle (seasonal, when park is open late)</li>
+          <li>CityWalk Hollywood access (no ticket required)</li>
+          <li>Single Rider lines at select attractions — completely free</li>
+          <li>Universal Studios Hollywood app — wait times and maps</li>
+        </ul>
+      </div>
+      <div class="card extra">
+        <h3>+ Costs Extra</h3>
+        <ul class="plus-list">
+          <li>Universal Express Pass</li>
+          <li>Universal Express Unlimited</li>
+          <li>VIP Tour Experience</li>
+          <li>Power-Up Band for Super Nintendo World</li>
+          <li>Interactive Wand for Wizarding World</li>
+          <li>Toadstool Café dining (reservation required)</li>
+          <li>Halloween Horror Nights (separately ticketed evening event)</li>
+          <li>Super Nintendo World Early Access ticket (1 hour early entry to the land)</li>
+          <li>All food, beverages, and merchandise</li>
+          <li>Parking</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: HOLLYWOOD VS ORLANDO -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon">🔄</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">Planning Both Coasts?</div>
+        <h2>Hollywood vs. Universal Orlando</h2>
+      </div>
+    </div>
+
+    <p style="font-size:14px;color:var(--text-light);margin-bottom:24px;max-width:760px;">If you're considering both Universal destinations — or trying to decide which one is right for your family — here's a straight comparison to help you plan.</p>
+
+    <div class="compare-grid">
+      <div class="compare-card hollywood">
+        <h3>🎬 Universal Studios Hollywood</h3>
+        <ul class="compare-list">
+          <li>One theme park — very doable in 1 day, ideal in 2</li>
+          <li>The Studio Tour is unique to Hollywood — nowhere else like it</li>
+          <li>Super Nintendo World opened here before Orlando</li>
+          <li>Less intense thrill ride lineup — better for younger families</li>
+          <li>No on-site hotel Express Pass perk</li>
+          <li>Generally less crowded than Orlando parks</li>
+          <li>Great add-on to a broader Southern California trip (Disneyland is ~45 min away)</li>
+          <li>Harry Potter Hogsmeade only — no Diagon Alley or Hogwarts Express</li>
+          <li>Fast & Furious: Hollywood Drift coaster opening 2026 — brand new thrill</li>
+          <li>Best if: You want a legendary behind-the-scenes Hollywood experience</li>
+        </ul>
+      </div>
+      <div class="compare-card orlando">
+        <h3>🌴 Universal Orlando Resort</h3>
+        <ul class="compare-list">
+          <li>Four theme parks — plan 4–5 full days minimum</li>
+          <li>Epic Universe opened May 2025 — five immersive new worlds</li>
+          <li>Hagrid's Motorbike Adventure — arguably the best theme park ride anywhere</li>
+          <li>Both Hogsmeade AND Diagon Alley — Hogwarts Express connecting them</li>
+          <li>Three hotels include free Express Unlimited (a massive value)</li>
+          <li>Jurassic World VelociCoaster — premier thrill coaster</li>
+          <li>Volcano Bay water park included in resort</li>
+          <li>More suitable for a dedicated multi-day Universal vacation</li>
+          <li>Best if: Universal is your primary vacation destination</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="background:var(--cream);border-left:4px solid var(--gold);border-radius:0 8px 8px 0;padding:20px 28px;margin-top:24px;">
+      <p style="font-size:14px;color:var(--text);"><strong style="color:var(--navy);">The Combo Trip:</strong> Hollywood + Disneyland is a natural Southern California pairing — roughly 45 minutes apart on a good traffic day. Universal Orlando + Walt Disney World is the classic Florida combo — 15–20 minutes apart. I help families plan both all the time. Let me build you an itinerary that makes both destinations work seamlessly together.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: PRO TIPS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon">🎯</div>
+      <div class="section-title-wrap">
+        <div class="subtitle">From The Imagineer Dad</div>
+        <h2>8 Pro Tips for Universal Hollywood</h2>
+      </div>
+    </div>
+    <div class="tips-list">
+      <div class="tip">
+        <div class="tip-num">1</div>
+        <p><strong>Head to the Lower Lot first.</strong> Most guests explore the Upper Lot when the park opens — take the escalators down to the Lower Lot immediately and hit Revenge of the Mummy and Jurassic World while lines are short. Return to the Upper Lot once you've knocked those out.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">2</div>
+        <p><strong>Book Toadstool Café the same day you buy tickets.</strong> Reservations open 60 days in advance and fill up fast. Log into the Universal app the moment your window opens. If you miss it, check back day-of for cancellations — but don't count on it.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">3</div>
+        <p><strong>Do the Studio Tour midday.</strong> The 60-minute tram tour is best experienced when Upper Lot ride lines are at their longest (late morning to early afternoon). While everyone queues for rides, you're on a moving tram with no wait at all. Smart scheduling.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">4</div>
+        <p><strong>Use Single Rider lines aggressively.</strong> Hollywood's Single Rider lines at Jurassic World, Mummy, Transformers, Forbidden Journey, Hippogriff, and Mario Kart are consistently under 10 minutes — even on busy days. If you don't mind riding without your full group, this is your free Express Pass alternative.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">5</div>
+        <p><strong>Get a Power-Up Band for Super Nintendo World.</strong>Without it, you're walking through a beautiful themed area without experiencing half of what makes it magical. The interactive challenges, coin collection, and boss battles throughout the land are the whole point.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">6</div>
+        <p><strong>See WaterWorld: A Live Sea War Spectacular.</strong> This stunt show is legitimately world-class and most first-time visitors skip it because they think it's a "just a show." It's not. It's one of the most spectacular live action productions at any theme park — explosions, plane crashes, jet skis, and a fully in-your-face water finale. Sit close to get wet. Arrive 20 minutes early for a good seat.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">7</div>
+        <p><strong>Visit Hollywood before Disneyland on a SoCal combo trip.</strong> Disneyland typically needs 2–3 days; Universal Hollywood is a 1-day park. Start your trip at Universal while you're fresh and excited about something new, then head to Disneyland for the remainder of your vacation.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">8</div>
+        <p><strong>Weekdays in September or November are the magic formula.</strong> If you have any flexibility in your travel dates, a Tuesday–Thursday visit in September or November gives you the shortest lines, most comfortable weather, and lowest ticket prices of the year. The difference between a September Tuesday and a July Saturday is hours of your life back.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Ready to Experience <span>Hollywood's Magic?</span></h2>
+  <p>I'll help you plan the perfect Universal Studios Hollywood day — or build it into a bigger Southern California vacation that includes Disneyland. My planning services are completely free.</p>
+  <a href="https://form.jotform.com/Jason_Strang/request-a-universal-quote" target="_blank" class="cta-btn">✨ Request Your Free Quote</a>
+  <div class="cta-contact">
+    Questions? Reach me at <a href="mailto:jason@wishuponacastle.com">jason@wishuponacastle.com</a> or <a href="tel:8436089481">843-608-9481</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p>© 2025 The Imagineer Dad · Wish Upon a Castle LLC · An Authorized Disney Vacation Planner · Authorized Universal Retailer · Earmarked Silver Producer</p>
+  <p style="margin-top:8px;">
+    <a href="/">Home</a> &nbsp;·&nbsp;
+    <a href="/guides">Planning Guides</a> &nbsp;·&nbsp;
+    <a href="/cruise">Disney Cruise</a> &nbsp;·&nbsp;
+    <a href="/wdw">Walt Disney World</a> &nbsp;·&nbsp;
+    <a href="/disneyland">Disneyland</a> &nbsp;·&nbsp;
+    <a href="/universal">Universal Orlando</a>
+  </p>
+</footer>
+
+</body>
+</html>
