@@ -147,6 +147,7 @@
       color: var(--text);
       background: var(--white);
       line-height: 1.7;
+      /* overflow-x: hidden; */
     }
 
     /* ===== NAV ===== */
@@ -214,7 +215,7 @@
 
     @media(max-width:768px) {
       .nav {
-        padding: 0 20px;
+        padding: 0 16px;
       }
 
       .nav-links {
@@ -222,7 +223,8 @@
       }
 
       .nav-links li:nth-child(1),
-      .nav-links li:nth-child(2) {
+      .nav-links li:nth-child(2),
+      .nav-links li:nth-child(3){
         display: none;
       }
 
