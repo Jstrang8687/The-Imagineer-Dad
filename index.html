@@ -621,6 +621,10 @@
       border-radius: 14px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     }
+ 
+    #sandals{
+        grid-column: 2;
+    }
 
     .dest-card:hover .dest-card-inner,
     .dest-card.flipped .dest-card-inner {
@@ -732,17 +736,6 @@
       pointer-events: none;
     }
 
-    /* #sandals {
-      width: 595px;
-      display: block;
-      margin-left: 200px;
-    } */
-    @media(min-width:859px) {
-      #sandals {
-        width: 595px;
-        margin-left: 200px;
-      }
-    }
     /* ===== SOCIAL / FEATURED ===== */
     .social-section {
       background: linear-gradient(135deg, #0a0e28 0%, #1a0040 50%, #0c1138 100%);
@@ -1278,7 +1271,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </div>
 
-        <div id="sandals"
+        <div id="sandals">
         <div class="dest-card" onclick="this.classList.toggle('flipped')">
           <div class="dest-card-inner">
             <div class="dest-front">
