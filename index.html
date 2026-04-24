@@ -621,10 +621,6 @@
       border-radius: 14px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     }
- 
-    #sandals{
-        grid-column: 2;
-    }
 
     .dest-card:hover .dest-card-inner,
     .dest-card.flipped .dest-card-inner {
@@ -735,7 +731,19 @@
       cursor: default;
       pointer-events: none;
     }
+    /* =====Specific card styles===== */
+    #sandals{
+      grid-column: 2;
+    }
 
+    @media(max-width:950px) {
+      #sandals {
+        /* grid-column: 1; */
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: 413px;
+      }
+    }
     /* ===== SOCIAL / FEATURED ===== */
     .social-section {
       background: linear-gradient(135deg, #0a0e28 0%, #1a0040 50%, #0c1138 100%);
